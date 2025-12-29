@@ -1247,13 +1247,23 @@ footer p {
     }
     
     .audience-icon-wrapper {
-        width: 48px;
-        height: 48px;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 16px;
     }
     
     .audience-icon {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
+    }
+    
+    .audience-card h3 {
+        font-size: 18px;
+    }
+    
+    .audience-desc {
+        font-size: 14px;
+        min-height: auto;
     }
     
     .cta-final {
