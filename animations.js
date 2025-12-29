@@ -41,8 +41,10 @@ window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     if (hero && scrolled < hero.offsetHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.4}px)`;
-        hero.style.opacity = 1 - (scrolled / hero.offsetHeight) * 0.5;
+        const translateY = Math.min(scrolled * 0.3, 100);
+        const opacity = Math.max(1 - (scrolled / hero.offsetHeight) * 0.3, 0.7);
+        hero.style.transform = `translateY(${translateY}px)`;
+        hero.style.opacity = opacity;
     }
 });
 
