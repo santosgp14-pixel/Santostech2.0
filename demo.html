@@ -134,12 +134,17 @@
                         
                         <div class="form-group">
                             <label for="messageType">Tipo de mensaje</label>
-                            <select id="messageType">
-                                <option value="bienvenida">Bienvenida nuevo cliente</option>
-                                <option value="seguimiento">Seguimiento de propuesta</option>
-                                <option value="recordatorio">Recordatorio de pago</option>
-                                <option value="agradecimiento">Agradecimiento post-compra</option>
-                            </select>
+                            <div class="select-wrapper">
+                                <select id="messageType">
+                                    <option value="bienvenida" data-icon="👋">👋 Bienvenida nuevo cliente</option>
+                                    <option value="seguimiento" data-icon="📊">📊 Seguimiento de propuesta</option>
+                                    <option value="recordatorio" data-icon="⏰">⏰ Recordatorio de pago</option>
+                                    <option value="agradecimiento" data-icon="🎉">🎉 Agradecimiento post-compra</option>
+                                </select>
+                                <svg class="select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
                         
                         <div class="form-group" id="extraFieldContainer">
