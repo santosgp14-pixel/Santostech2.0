@@ -4,61 +4,89 @@ const messageTemplates = {
         label: 'Cliente',
         template: (name, company) => `Hola ${name},
 
-¡Bienvenido a nuestra familia! Estamos muy emocionados de comenzar a trabajar contigo y con ${company}.
+¡Bienvenido a bordo! Estamos emocionados de comenzar a trabajar contigo y transformar ${company}.
 
-Queremos que sepas que estás en buenas manos. Nos comprometemos a brindarte el mejor servicio y acompañarte en cada paso del camino.
+Nos comprometemos a: (1) Cumplir todos los plazos acordados, (2) Mantener comunicación constante y transparente, (3) Entregarte resultados medibles desde el día 1.
 
-Si tenés alguna pregunta o necesitás ayuda con algo, no dudes en contactarnos. Estamos acá para vos.
+Próximos pasos:
+• En las próximas 48 horas recibirás el cronograma detallado
+• Agendaré nuestra primera sesión de kickoff
+• Tendrás acceso directo a mí por WhatsApp 24/7
 
-¡Gracias por confiar en nosotros!
+¿Preguntas? Respóndeme este mensaje.
 
-Saludos cordiales,
-El equipo de SantOps`
+Gracias por confiar en SantOps para llevar tu negocio al siguiente nivel.
+
+Saludos,
+Equipo SantOps`
     },
     seguimiento: {
         label: 'Monto de propuesta',
         template: (name, company, extra) => `Hola ${name},
 
-Espero que estés muy bien. Te escribo para hacer un seguimiento de la propuesta que te enviamos para ${company}.
+¿Tuviste oportunidad de revisar la propuesta que te enviamos para ${company}?
 
-Como recordarás, te propusimos un proyecto por ${extra || '$XX,XXX'} que incluye [detalles del servicio].
+Recap rápido:
+• Inversión: ${extra || '$XX,XXX'}
+• ROI estimado: 300-500% en 12 meses
+• Tiempo de implementación: [X semanas]
+• Ahorro proyectado: [X horas/semana]
 
-¿Tuviste oportunidad de revisarla? Me encantaría escuchar tus comentarios y responder cualquier pregunta que puedas tener.
+Entiendo que tomar decisiones estratégicas requiere tiempo. Si tienes dudas o necesitas ajustes, estoy disponible para:
+• Responder preguntas específicas
+• Ajustar el alcance según tu presupuesto
+• Programar una llamada de 15 minutos para aclarar detalles
 
-Quedo atento a tu respuesta.
+¿Cuándo te viene bien que hablemos?
 
 Saludos,
-Equipo de SantOps`
+Equipo SantOps`
     },
     recordatorio: {
         label: 'Monto pendiente',
         template: (name, company, extra) => `Hola ${name},
 
-Espero que estés muy bien. Te escribo para recordarte amablemente que tenemos un pago pendiente de ${extra || '$XX,XXX'} correspondiente a ${company}.
+Espero que estés bien. Te escribo para recordarte que tenemos un pago pendiente:
 
-Te agradeceríamos si pudieras procesarlo a la brevedad. Si ya realizaste el pago, por favor ignora este mensaje y avisanos para actualizar nuestros registros.
+• Monto: ${extra || '$XX,XXX'}
+• Concepto: Servicios para ${company}
+• Vencimiento: [Fecha]
 
-Si tenés algún inconveniente o necesitás más información, estoy a tu disposición.
+Si ya procesaste el pago, por favor ignora este mensaje y envíame el comprobante para actualizar nuestros registros.
 
-Muchas gracias por tu atención.
+Opciones de pago:
+• Transferencia bancaria: [Datos]
+• MercadoPago/PayPal: [Link]
 
-Saludos cordiales,
-Equipo de SantOps`
+¿Alguna dificultad? Podemos evaluar opciones de pago en cuotas o ajustar fechas. Mi prioridad es encontrar una solución que funcione para ambos.
+
+Quedo atento.
+
+Saludos,
+Equipo SantOps`
     },
     agradecimiento: {
         label: 'Producto/Servicio',
         template: (name, company, extra) => `Hola ${name},
 
-¡Muchas gracias por tu compra! En ${company} valoramos enormemente tu confianza en nosotros.
+¡Gracias por elegirnos! Tu confianza en SantOps significa mucho para nosotros.
 
-Esperamos que ${extra || 'nuestro producto/servicio'} supere tus expectativas y te ayude a alcanzar tus objetivos.
+Ya estamos trabajando en ${extra || 'tu proyecto'} para ${company}. Nuestro compromiso:
 
-Recordá que estamos acá para ayudarte en lo que necesites. No dudes en contactarnos si tenés alguna pregunta o comentario.
+• Resultados medibles en las primeras 2 semanas
+• Comunicación constante sobre el progreso
+• Soporte ilimitado durante 30 días post-implementación
 
-¡Que lo disfrutes!
+¿Necesitas ayuda o tienes preguntas? Escríbeme directamente:
+• WhatsApp: +54 11 2673-0434 (respuesta en <2 horas)
+• Email: santosgp14@gmail.com
+
+Ah, y si conoces a alguien que pueda beneficiarse de automatización, te agradeceremos la referencia (y ellos recibirán un 15% de descuento).
+
+¡A construir algo genial juntos!
 
 Saludos,
-El equipo de SantOps`
+Equipo SantOps`
     }
 };
 
