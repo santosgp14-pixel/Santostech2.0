@@ -34,6 +34,20 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Animated Background Particles -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -114,36 +128,145 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section - Rediseñado -->
+    <section class="hero-new">
+        <!-- Animated background -->
+        <div class="hero-bg-gradient"></div>
+        <div class="hero-grid-overlay"></div>
+        
         <div class="container">
-            <div class="hero-badge">
-                <span class="badge-icon">⚡</span>
-                <span>Automatización inteligente para PyMEs</span>
-            </div>
-            <h1>Tu equipo pierde tiempo en tareas<br>que podrían automatizarse</h1>
-            <p class="hero-subtitle">Automatización de procesos operativos para empresas pequeñas y medianas. Integración de herramientas y optimización de flujos de trabajo. Sin complejidad innecesaria.</p>
-            <div class="cta-group">
-                <a href="contacto.html" class="btn-primary">
-                    <span>Agendar diagnóstico gratuito</span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a href="#proceso" class="btn-secondary">Ver cómo funciona</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-value">80%</div>
-                    <div class="stat-label">Reducción de tiempo</div>
+            <div class="hero-content-grid">
+                <!-- Left: Main Content -->
+                <div class="hero-main">
+                    <div class="hero-badge-new">
+                        <svg class="badge-pulse" width="16" height="16" viewBox="0 0 16 16">
+                            <circle cx="8" cy="8" r="6" fill="url(#badgeGrad)"/>
+                            <defs>
+                                <linearGradient id="badgeGrad">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#059669"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span>Soluciones digitales que generan resultados reales</span>
+                    </div>
+                    
+                    <h1 class="hero-title-new">
+                        <span class="highlight-gradient">Soluciones digitales</span> para optimizar
+                        tu negocio y escalar sin límites
+                    </h1>
+                    
+                    <p class="hero-description-new">
+                        Desarrollo web, automatización de procesos, refactorización de código y optimización de flujos. 
+                        <strong>Todo lo que tu PyME necesita para crecer digitalmente.</strong>
+                    </p>
+                    
+                    <!-- Value Props -->
+                    <div class="hero-features">
+                        <div class="feature-pill">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 2L12.5 7.5L18 8.5L14 13L15 18.5L10 15.5L5 18.5L6 13L2 8.5L7.5 7.5L10 2Z" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5"/>
+                            </svg>
+                            <span>Sin costos ocultos</span>
+                        </div>
+                        <div class="feature-pill">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="8" stroke="#10b981" stroke-width="1.5"/>
+                                <path d="M6 10L9 13L14 7" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Resultados en 1-2 semanas</span>
+                        </div>
+                        <div class="feature-pill">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 2C10 2 14 6 14 10C14 12.2091 12.2091 14 10 14C7.79086 14 6 12.2091 6 10C6 6 10 2 10 2Z" fill="#3b82f6" opacity="0.3"/>
+                                <path d="M10 2C10 2 14 6 14 10C14 12.2091 12.2091 14 10 14C7.79086 14 6 12.2091 6 10C6 6 10 2 10 2Z" stroke="#3b82f6" stroke-width="1.5"/>
+                            </svg>
+                            <span>Usa tus herramientas actuales</span>
+                        </div>
+                    </div>
+                    
+                    <!-- CTAs -->
+                    <div class="hero-cta-group">
+                        <a href="contacto.html" class="btn-primary-new">
+                            <span>Diagnóstico Gratuito</span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <a href="#casos" class="btn-secondary-new">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M10 10L10 6M10 14L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Ver casos de éxito</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Trust indicators -->
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <div class="trust-avatars">
+                                <span class="avatar">MC</span>
+                                <span class="avatar">JR</span>
+                                <span class="avatar">AS</span>
+                                <span class="avatar-more">+8</span>
+                            </div>
+                            <div class="trust-text">
+                                <strong>11+ empresas</strong> ya optimizaron sus procesos
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-value">24/7</div>
-                    <div class="stat-label">Procesos activos</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">100%</div>
-                    <div class="stat-label">Sin errores manuales</div>
+                
+                <!-- Right: Interactive Stats -->
+                <div class="hero-stats-new">
+                    <div class="stats-card">
+                        <div class="stat-card-item primary">
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 48 48" fill="none">
+                                    <circle cx="24" cy="24" r="20" stroke="url(#statGrad1)" stroke-width="3" opacity="0.3"/>
+                                    <circle cx="24" cy="24" r="16" stroke="url(#statGrad1)" stroke-width="4" stroke-dasharray="70 30" transform="rotate(-90 24 24)"/>
+                                    <text x="24" y="28" text-anchor="middle" fill="url(#statGrad1)" font-size="14" font-weight="700">80%</text>
+                                    <defs>
+                                        <linearGradient id="statGrad1" x1="0" y1="0" x2="48" y2="48">
+                                            <stop offset="0%" stop-color="#0891b2"/>
+                                            <stop offset="100%" stop-color="#06b6d4"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value-new">80%</div>
+                                <div class="stat-label-new">Menos tiempo en tareas manuales</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card-item success">
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 48 48" fill="none">
+                                    <rect x="12" y="28" width="6" height="12" rx="2" fill="#10b981" opacity="0.3"/>
+                                    <rect x="21" y="20" width="6" height="20" rx="2" fill="#10b981" opacity="0.6"/>
+                                    <rect x="30" y="12" width="6" height="28" rx="2" fill="#10b981"/>
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value-new">3x</div>
+                                <div class="stat-label-new">Productividad del equipo</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card-item accent">
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 48 48" fill="none">
+                                    <path d="M24 8L28 20L40 22L32 30L34 42L24 36L14 42L16 30L8 22L20 20L24 8Z" fill="#fbbf24" opacity="0.9"/>
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value-new">100%</div>
+                                <div class="stat-label-new">Precisión sin errores</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,101 +321,473 @@
     <section id="servicios">
         <div class="container">
             <h2 class="section-title">Servicios disponibles</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">⚙️</div>
+            <p class="section-subtitle">Soluciones adaptadas a las necesidades reales de tu empresa</p>
+            <div class="diff-grid-new">
+                <div class="diff-card-new" data-color="cyan">
+                    <div class="card-glow"></div>
+                    <div class="card-number">01</div>
+                    <span class="card-badge-top popular">MÁS SOLICITADO</span>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <circle cx="28" cy="28" r="20" stroke="url(#grad-service1)" stroke-width="2.5"/>
+                            <path d="M28 14V42M14 28H42" stroke="url(#grad-service1)" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="28" cy="28" r="8" fill="url(#grad-service1)"/>
+                            <path d="M20 20L36 36M36 20L20 36" stroke="url(#grad-service1)" stroke-width="1.5" opacity="0.3"/>
+                            <defs>
+                                <linearGradient id="grad-service1" x1="8" y1="8" x2="48" y2="48">
+                                    <stop offset="0%" stop-color="#06b6d4"/>
+                                    <stop offset="100%" stop-color="#0891b2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Automatización de procesos operativos</h3>
-                    <ul class="service-list">
-                        <li>Eliminación de tareas repetitivas</li>
-                        <li>Configuración de flujos automáticos entre herramientas</li>
-                        <li>Ahorro de horas cada semana</li>
+                    <p>Elimina tareas repetitivas y libera tiempo valioso de tu equipo</p>
+                    <div class="card-metric">
+                        <div class="metric-value">80%</div>
+                        <div class="metric-label">Tiempo ahorrado</div>
+                    </div>
+                    <ul class="service-benefits">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Eliminación de tareas repetitivas</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Configuración de flujos automáticos entre herramientas</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Ahorro de horas cada semana</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🔌</div>
+                
+                <div class="diff-card-new" data-color="blue">
+                    <div class="card-glow"></div>
+                    <div class="card-number">02</div>
+                    <span class="card-badge-top integration">INTEGRACIÓN</span>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <rect x="6" y="18" width="16" height="20" rx="3" stroke="url(#grad-service2)" stroke-width="2.5"/>
+                            <rect x="34" y="18" width="16" height="20" rx="3" stroke="url(#grad-service2)" stroke-width="2.5"/>
+                            <path d="M22 28H34M26 28V20M30 28V36" stroke="url(#grad-service2)" stroke-width="2.5" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="grad-service2" x1="6" y1="18" x2="50" y2="38">
+                                    <stop offset="0%" stop-color="#3b82f6"/>
+                                    <stop offset="100%" stop-color="#2563eb"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Integraciones entre herramientas</h3>
-                    <ul class="service-list">
-                        <li>Conexión de CRM con hojas de cálculo</li>
-                        <li>Sincronización de emails, formularios y bases de datos</li>
-                        <li>Fuente única de datos centralizada</li>
+                    <p>Conecta todas tus aplicaciones en un ecosistema unificado</p>
+                    <div class="card-metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Sincronización</div>
+                    </div>
+                    <ul class="service-benefits">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Conexión automática entre tus herramientas</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Sincronización de emails, formularios y bases de datos</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Fuente única de datos centralizada</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
+                
+                <div class="diff-card-new" data-color="green">
+                    <div class="card-glow"></div>
+                    <div class="card-number">03</div>
+                    <span class="card-badge-top optimization">OPTIMIZACIÓN</span>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <path d="M10 38L20 24L30 32L46 12" stroke="url(#grad-service3)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="20" cy="24" r="3" fill="url(#grad-service3)"/>
+                            <circle cx="30" cy="32" r="3" fill="url(#grad-service3)"/>
+                            <circle cx="46" cy="12" r="3" fill="url(#grad-service3)"/>
+                            <defs>
+                                <linearGradient id="grad-service3" x1="10" y1="38" x2="46" y2="12">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#059669"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Optimización de flujos de trabajo</h3>
-                    <ul class="service-list">
-                        <li>Revisión y mejora de procesos existentes</li>
-                        <li>Identificación de cuellos de botella</li>
-                        <li>Diseño de flujos claros y documentados</li>
+                    <p>Identifica y elimina cuellos de botella en tus procesos</p>
+                    <div class="card-metric">
+                        <div class="metric-value">60%</div>
+                        <div class="metric-label">Más eficiente</div>
+                    </div>
+                    <ul class="service-benefits">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Revisión y mejora de procesos existentes</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Identificación de cuellos de botella</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Diseño de flujos claros y documentados</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
+                
+                <div class="diff-card-new" data-color="purple">
+                    <div class="card-glow"></div>
+                    <div class="card-number">04</div>
+                    <span class="card-badge-top analytics">ANALYTICS</span>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <rect x="10" y="30" width="8" height="16" rx="2" fill="url(#grad-service4)" opacity="0.6"/>
+                            <rect x="24" y="20" width="8" height="26" rx="2" fill="url(#grad-service4)" opacity="0.8"/>
+                            <rect x="38" y="10" width="8" height="36" rx="2" fill="url(#grad-service4)"/>
+                            <defs>
+                                <linearGradient id="grad-service4" x1="10" y1="46" x2="46" y2="10">
+                                    <stop offset="0%" stop-color="#8b5cf6"/>
+                                    <stop offset="100%" stop-color="#7c3aed"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Reportes y control operativo</h3>
-                    <ul class="service-list">
-                        <li>Dashboards simples y útiles</li>
-                        <li>Métricas que realmente importan</li>
-                        <li>Visibilidad sobre lo que pasa en tu operación</li>
+                    <p>Toma decisiones basadas en datos reales y actualizados</p>
+                    <div class="card-metric">
+                        <div class="metric-value">24/7</div>
+                        <div class="metric-label">Monitoreo</div>
+                    </div>
+                    <ul class="service-benefits">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Dashboards simples y útiles</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Métricas que realmente importan</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Visibilidad sobre lo que pasa en tu operación</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card-new" data-color="orange">
+                    <div class="card-glow"></div>
+                    <div class="card-number">05</div>
+                    <span class="card-badge-top web">DISEÑO WEB</span>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <rect x="6" y="12" width="44" height="32" rx="4" stroke="url(#grad-service5)" stroke-width="2.5"/>
+                            <path d="M6 22H50M16 17H18M22 17H24" stroke="url(#grad-service5)" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="28" cy="32" r="6" stroke="url(#grad-service5)" stroke-width="2" opacity="0.5"/>
+                            <path d="M20 32L24 36M36 32L32 36" stroke="url(#grad-service5)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="grad-service5" x1="6" y1="12" x2="50" y2="44">
+                                    <stop offset="0%" stop-color="#f59e0b"/>
+                                    <stop offset="100%" stop-color="#d97706"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Desarrollo y diseño web</h3>
+                    <p>Sitios web profesionales, rápidos y optimizados para tu negocio</p>
+                    <div class="card-metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Responsive</div>
+                    </div>
+                    <ul class="service-benefits">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Diseño moderno y profesional</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Optimizado para móviles y SEO</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Carga rápida y rendimiento óptimo</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="diff-card-new" data-color="red">
+                    <div class="card-glow"></div>
+                    <div class="card-number">06</div>
+                    <span class="card-badge-top refactor">REFACTORIZACIÓN</span>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <path d="M14 28L28 14L42 28M14 28L28 42L42 28" stroke="url(#grad-service6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="14" cy="28" r="4" fill="url(#grad-service6)"/>
+                            <circle cx="42" cy="28" r="4" fill="url(#grad-service6)"/>
+                            <circle cx="28" cy="14" r="4" fill="url(#grad-service6)"/>
+                            <circle cx="28" cy="42" r="4" fill="url(#grad-service6)"/>
+                            <defs>
+                                <linearGradient id="grad-service6" x1="14" y1="14" x2="42" y2="42">
+                                    <stop offset="0%" stop-color="#ef4444"/>
+                                    <stop offset="100%" stop-color="#dc2626"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Refactorización de código</h3>
+                    <p>Mejora y modernización de código existente para mejor mantenibilidad</p>
+                    <div class="card-metric">
+                        <div class="metric-value">50%</div>
+                        <div class="metric-label">Menos bugs</div>
+                    </div>
+                    <ul class="service-benefits">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Código más limpio y mantenible</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Mejora de rendimiento y escalabilidad</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>Documentación técnica actualizada</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
+    <!-- Process Section - Flowchart Design -->
     <section id="proceso" class="section-gray">
         <div class="container">
             <h2 class="section-title">Proceso simple y claro</h2>
             <p class="section-subtitle">Un flujo de trabajo diseñado para resultados rápidos y efectivos</p>
             
-            <div class="process-timeline">
-                <div class="step" data-step="1">
-                    <div class="step-card">
-                        <div class="step-badge">Análisis</div>
-                        <div class="step-number">01</div>
-                        <h3>Diagnóstico</h3>
-                        <p>Análisis de procesos actuales e identificación de oportunidades de mejora.</p>
-                        <div class="step-meta">⏱️ 30-45 min • Gratuito</div>
+            <!-- Flowchart Container -->
+            <div class="process-flowchart">
+                <!-- Start Node -->
+                <div class="flow-node start-node">
+                    <div class="node-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+                            <path d="M13 16L16 19L19 16M16 13V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </div>
-                    <svg class="arrow-connector" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <div class="node-label">Inicio</div>
+                </div>
+                
+                <!-- Connector -->
+                <div class="flow-connector">
+                    <svg viewBox="0 0 100 60" preserveAspectRatio="none">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#0891b2" />
+                            </marker>
+                        </defs>
+                        <path d="M 0 30 L 100 30" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite"/>
+                        </path>
                     </svg>
                 </div>
                 
-                <div class="step" data-step="2">
-                    <div class="step-card">
-                        <div class="step-badge">Planificación</div>
-                        <div class="step-number">02</div>
-                        <h3>Propuesta</h3>
-                        <p>Plan de implementación claro con tiempos y presupuesto definidos.</p>
-                        <div class="step-meta">📋 1-2 días • Detallada</div>
+                <!-- Step 1 -->
+                <div class="flow-node process-node" data-step="1">
+                    <div class="node-badge">Paso 1</div>
+                    <div class="node-content">
+                        <div class="node-number">01</div>
+                        <div class="node-icon-large">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <rect x="12" y="12" width="24" height="24" rx="4" stroke="url(#grad1)" stroke-width="2"/>
+                                <path d="M18 24L22 28L30 20" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="grad1" x1="12" y1="12" x2="36" y2="36">
+                                        <stop offset="0%" stop-color="#0891b2"/>
+                                        <stop offset="100%" stop-color="#06b6d4"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="node-title">Diagnóstico</h3>
+                        <p class="node-description">Análisis de procesos actuales e identificación de oportunidades de mejora</p>
+                        <div class="node-meta">
+                            <span class="meta-item">⏱️ 30-45 min</span>
+                            <span class="meta-badge free">Gratuito</span>
+                        </div>
                     </div>
-                    <svg class="arrow-connector" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </div>
+                
+                <!-- Connector -->
+                <div class="flow-connector">
+                    <svg viewBox="0 0 100 60" preserveAspectRatio="none">
+                        <path d="M 0 30 L 100 30" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite"/>
+                        </path>
                     </svg>
                 </div>
                 
-                <div class="step" data-step="3">
-                    <div class="step-card">
-                        <div class="step-badge">Desarrollo</div>
-                        <div class="step-number">03</div>
-                        <h3>Implementación</h3>
-                        <p>Configuración de automatizaciones, integración y pruebas.</p>
-                        <div class="step-meta">⚡ 1-3 semanas • Activa</div>
+                <!-- Step 2 -->
+                <div class="flow-node process-node" data-step="2">
+                    <div class="node-badge">Paso 2</div>
+                    <div class="node-content">
+                        <div class="node-number">02</div>
+                        <div class="node-icon-large">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M14 18L24 12L34 18V32L24 38L14 32V18Z" stroke="url(#grad2)" stroke-width="2"/>
+                                <path d="M19 24H29M19 28H29" stroke="url(#grad2)" stroke-width="2" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="grad2" x1="14" y1="12" x2="34" y2="38">
+                                        <stop offset="0%" stop-color="#3b82f6"/>
+                                        <stop offset="100%" stop-color="#2563eb"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="node-title">Propuesta</h3>
+                        <p class="node-description">Plan de implementación claro con tiempos y presupuesto definidos</p>
+                        <div class="node-meta">
+                            <span class="meta-item">📋 1-2 días</span>
+                            <span class="meta-badge detail">Detallada</span>
+                        </div>
                     </div>
-                    <svg class="arrow-connector" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </div>
+                
+                <!-- Connector -->
+                <div class="flow-connector">
+                    <svg viewBox="0 0 100 60" preserveAspectRatio="none">
+                        <path d="M 0 30 L 100 30" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite"/>
+                        </path>
                     </svg>
                 </div>
                 
-                <div class="step" data-step="4">
-                    <div class="step-card step-final">
-                        <div class="step-badge">Finalización</div>
-                        <div class="step-number">04</div>
-                        <h3>Entrega</h3>
-                        <p>Documentación completa, capacitación y soporte incluido.</p>
-                        <div class="step-meta">✅ Completa • Soporte</div>
+                <!-- Step 3 -->
+                <div class="flow-node process-node" data-step="3">
+                    <div class="node-badge">Paso 3</div>
+                    <div class="node-content">
+                        <div class="node-number">03</div>
+                        <div class="node-icon-large">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <circle cx="24" cy="24" r="14" stroke="url(#grad3)" stroke-width="2"/>
+                                <path d="M24 16V24L28 28" stroke="url(#grad3)" stroke-width="2" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="grad3" x1="10" y1="10" x2="38" y2="38">
+                                        <stop offset="0%" stop-color="#8b5cf6"/>
+                                        <stop offset="100%" stop-color="#7c3aed"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="node-title">Implementación</h3>
+                        <p class="node-description">Configuración de automatizaciones, integración y pruebas</p>
+                        <div class="node-meta">
+                            <span class="meta-item">⚡ 1-3 semanas</span>
+                            <span class="meta-badge active">Activa</span>
+                        </div>
                     </div>
+                </div>
+                
+                <!-- Connector -->
+                <div class="flow-connector">
+                    <svg viewBox="0 0 100 60" preserveAspectRatio="none">
+                        <path d="M 0 30 L 100 30" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite"/>
+                        </path>
+                    </svg>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="flow-node process-node" data-step="4">
+                    <div class="node-badge">Paso 4</div>
+                    <div class="node-content">
+                        <div class="node-number">04</div>
+                        <div class="node-icon-large">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M18 24L22 28L30 20" stroke="url(#grad4)" stroke-width="3" stroke-linecap="round"/>
+                                <circle cx="24" cy="24" r="16" stroke="url(#grad4)" stroke-width="2"/>
+                                <defs>
+                                    <linearGradient id="grad4" x1="8" y1="8" x2="40" y2="40">
+                                        <stop offset="0%" stop-color="#10b981"/>
+                                        <stop offset="100%" stop-color="#059669"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="node-title">Entrega</h3>
+                        <p class="node-description">Documentación completa, capacitación y soporte incluido</p>
+                        <div class="node-meta">
+                            <span class="meta-item">✅ Completa</span>
+                            <span class="meta-badge success">Soporte</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connector -->
+                <div class="flow-connector">
+                    <svg viewBox="0 0 100 60" preserveAspectRatio="none">
+                        <path d="M 0 30 L 100 30" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arrowhead-success)" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1s" repeatCount="indefinite"/>
+                        </path>
+                        <defs>
+                            <marker id="arrowhead-success" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#10b981" />
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <!-- End Node -->
+                <div class="flow-node end-node">
+                    <div class="node-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="14" stroke="#10b981" stroke-width="2"/>
+                            <path d="M11 16L14 19L21 12" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="node-label success">¡Proceso automatizado!</div>
                 </div>
             </div>
         </div>
@@ -371,21 +866,98 @@
     <section class="section-gray">
         <div class="container">
             <h2 class="section-title">Por qué elegirnos</h2>
-            <div class="diff-grid">
-                <div class="diff-card">
-                    <div class="diff-icon">⚡</div>
+            <p class="section-subtitle">Enfoque único que combina tecnología con comprensión del negocio</p>
+            <div class="diff-grid-new">
+                <div class="diff-card-new" data-color="cyan">
+                    <div class="card-glow"></div>
+                    <div class="card-number">01</div>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <rect x="4" y="4" width="48" height="48" rx="12" stroke="url(#grad-cyan)" stroke-width="2.5"/>
+                            <path d="M28 16L20 28H36L28 16Z" fill="url(#grad-cyan)"/>
+                            <circle cx="28" cy="36" r="4" fill="url(#grad-cyan)"/>
+                            <path d="M18 44L28 34L38 44" stroke="url(#grad-cyan)" stroke-width="2.5" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="grad-cyan" x1="4" y1="4" x2="52" y2="52">
+                                    <stop offset="0%" stop-color="#06b6d4"/>
+                                    <stop offset="100%" stop-color="#0891b2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Enfoque práctico</h3>
                     <p>Implementación exclusiva de soluciones efectivas. Sin complejidad innecesaria.</p>
+                    <div class="card-metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Orientado a resultados</div>
+                    </div>
+                    <div class="diff-benefit-new">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>Resultados tangibles desde el día uno</span>
+                    </div>
                 </div>
-                <div class="diff-card">
-                    <div class="diff-icon">🎯</div>
+                
+                <div class="diff-card-new" data-color="blue">
+                    <div class="card-glow"></div>
+                    <div class="card-number">02</div>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <circle cx="28" cy="28" r="24" stroke="url(#grad-blue)" stroke-width="2.5"/>
+                            <circle cx="28" cy="28" r="14" fill="url(#grad-blue)" opacity="0.2"/>
+                            <circle cx="28" cy="28" r="6" fill="url(#grad-blue)"/>
+                            <path d="M28 4V14M28 42V52M4 28H14M42 28H52" stroke="url(#grad-blue)" stroke-width="2.5" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="grad-blue" x1="4" y1="4" x2="52" y2="52">
+                                    <stop offset="0%" stop-color="#3b82f6"/>
+                                    <stop offset="100%" stop-color="#2563eb"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Soluciones simples</h3>
-                    <p>Herramientas familiares que el equipo ya conoce. Sin curvas de aprendizaje complicadas.</p>
+                    <p>Usamos herramientas que tu equipo ya conoce: Google Sheets, WhatsApp, Email. Tecnología familiar, sin complicaciones.</p>
+                    <div class="card-metric">
+                        <div class="metric-value">Inmediato</div>
+                        <div class="metric-label">Listo para usar</div>
+                    </div>
+                    <div class="diff-benefit-new">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>Sin capacitación compleja</span>
+                    </div>
                 </div>
-                <div class="diff-card">
-                    <div class="diff-icon">✓</div>
+                
+                <div class="diff-card-new" data-color="green">
+                    <div class="card-glow"></div>
+                    <div class="card-number">03</div>
+                    <div class="diff-icon-wrapper">
+                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                            <circle cx="28" cy="28" r="24" stroke="url(#grad-green)" stroke-width="2.5"/>
+                            <path d="M16 28L24 36L40 20" stroke="url(#grad-green)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="28" cy="28" r="18" stroke="url(#grad-green)" stroke-width="2" opacity="0.4"/>
+                            <defs>
+                                <linearGradient id="grad-green" x1="4" y1="4" x2="52" y2="52">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#059669"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Automatización con criterio</h3>
                     <p>Automatización selectiva enfocada en el mayor impacto operativo.</p>
+                    <div class="card-metric">
+                        <div class="metric-value">3-5x</div>
+                        <div class="metric-label">ROI promedio</div>
+                    </div>
+                    <div class="diff-benefit-new">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>ROI medible en cada proyecto</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -477,9 +1049,27 @@
     <section class="section-gray">
         <div class="container">
             <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p class="section-subtitle">Resultados reales de empresas que transformaron sus procesos</p>
+            <div class="diff-grid-new testimonials-grid-new">
+                <div class="diff-card-new testimonial-card-new" data-color="cyan">
+                    <div class="card-glow"></div>
+                    <div class="testimonial-stars">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                    </div>
                     <p class="testimonial-text">"Pasamos de perder 15 horas semanales en reportes manuales a tener todo automatizado. El ROI fue inmediato."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">MC</div>
@@ -488,10 +1078,31 @@
                             <p class="author-role">Directora de Operaciones</p>
                         </div>
                     </div>
+                    <div class="card-metric">
+                        <div class="metric-value">15h</div>
+                        <div class="metric-label">Ahorradas por semana</div>
+                    </div>
                 </div>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="diff-card-new testimonial-card-new" data-color="blue">
+                    <div class="card-glow"></div>
+                    <div class="testimonial-stars">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                    </div>
                     <p class="testimonial-text">"La integración entre nuestro CRM y WhatsApp cambió completamente cómo atendemos clientes. Simple y efectivo."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">JR</div>
@@ -500,10 +1111,31 @@
                             <p class="author-role">CEO, Agencia Digital</p>
                         </div>
                     </div>
+                    <div class="card-metric">
+                        <div class="metric-value">2x</div>
+                        <div class="metric-label">Velocidad de respuesta</div>
+                    </div>
                 </div>
 
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="diff-card-new testimonial-card-new" data-color="green">
+                    <div class="card-glow"></div>
+                    <div class="testimonial-stars">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#f59e0b">
+                            <path d="M10 1L12.5 7.5L19 8L14 13L16 19L10 15.5L4 19L6 13L1 8L7.5 7.5L10 1Z"/>
+                        </svg>
+                    </div>
                     <p class="testimonial-text">"Increíble cómo pudieron automatizar procesos que ni siquiera sabíamos que se podían automatizar. Gran atención al detalle."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">LP</div>
@@ -511,6 +1143,10 @@
                             <p class="author-name">Laura Pérez</p>
                             <p class="author-role">Gerente General</p>
                         </div>
+                    </div>
+                    <div class="card-metric">
+                        <div class="metric-value">90%</div>
+                        <div class="metric-label">Reducción de errores</div>
                     </div>
                 </div>
             </div>
@@ -545,8 +1181,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>SantOps</h3>
-                    <p>Automatización inteligente para PyMEs</p>
+                    <img src="media/logo-santops.svg" alt="SantOps Logo" class="footer-brand-logo">
+                    <p>Optimización inteligente para PyMEs</p>
                 </div>
                 <div class="footer-social">
                     <a href="mailto:santosgp14@gmail.com" class="social-link" aria-label="Email">
@@ -562,7 +1198,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 SantOps - Automatización de Procesos para PyMEs</p>
+                <p>&copy; 2025 SantOps - Soluciones Digitales para PyMEs</p>
+                <div class="footer-credits">
+                    <span>Hecho por</span>
+                    <img src="media/logo-santops.svg" alt="SantOps Logo" class="footer-logo">
+                    <span>y ❤️ en Argentina</span>
+                </div>
             </div>
         </div>
     </footer>

@@ -298,3 +298,257 @@ window.addEventListener('load', function() {
 });
 
 console.log('🚀 SantOps - Website loaded successfully!');
+
+// ===================================
+// ADVANCED CARD INTERACTIONS - 3D TILT EFFECT
+// ===================================
+class CardTilt {
+    constructor(element, options = {}) {
+        this.element = element;
+        this.options = {
+            maxTilt: options.maxTilt || 8,
+            perspective: options.perspective || 1000,
+            scale: options.scale || 1.02,
+            speed: options.speed || 400,
+            glare: options.glare !== undefined ? options.glare : true,
+            maxGlare: options.maxGlare || 0.5
+        };
+        
+        this.reset = true;
+        this.onMouseEnterBound = this.onMouseEnter.bind(this);
+        this.onMouseMoveBound = this.onMouseMove.bind(this);
+        this.onMouseLeaveBound = this.onMouseLeave.bind(this);
+        
+        this.addEventListeners();
+        
+        // Agregar glare element si está habilitado
+        if (this.options.glare) {
+            this.glareElement = document.createElement('div');
+            this.glareElement.classList.add('card-glare');
+            this.element.appendChild(this.glareElement);
+        }
+    }
+    
+    addEventListeners() {
+        this.element.addEventListener('mouseenter', this.onMouseEnterBound);
+        this.element.addEventListener('mousemove', this.onMouseMoveBound);
+        this.element.addEventListener('mouseleave', this.onMouseLeaveBound);
+    }
+    
+    onMouseEnter() {
+        this.element.style.willChange = 'transform';
+        this.reset = false;
+    }
+    
+    onMouseMove(e) {
+        if (this.reset) return;
+        
+        const rect = this.element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const percentageX = x / rect.width;
+        const percentageY = y / rect.height;
+        
+        const tiltX = (percentageY - 0.5) * this.options.maxTilt * 2;
+        const tiltY = (percentageX - 0.5) * -this.options.maxTilt * 2;
+        
+        this.element.style.transform = `
+            perspective(${this.options.perspective}px)
+            rotateX(${tiltX}deg)
+            rotateY(${tiltY}deg)
+            scale3d(${this.options.scale}, ${this.options.scale}, ${this.options.scale})
+        `;
+        
+        // Update glare
+        if (this.glareElement) {
+            const glareX = percentageX * 100;
+            const glareY = percentageY * 100;
+            
+            this.glareElement.style.background = `
+                radial-gradient(circle at ${glareX}% ${glareY}%, 
+                rgba(255, 255, 255, ${this.options.maxGlare}) 0%, 
+                transparent 50%)
+            `;
+            this.glareElement.style.opacity = '1';
+        }
+    }
+    
+    onMouseLeave() {
+        this.reset = true;
+        this.element.style.willChange = 'auto';
+        this.element.style.transform = `
+            perspective(${this.options.perspective}px)
+            rotateX(0deg)
+            rotateY(0deg)
+            scale3d(1, 1, 1)
+        `;
+        
+        if (this.glareElement) {
+            this.glareElement.style.opacity = '0';
+        }
+    }
+}
+
+// Inicializar efecto tilt en todas las tarjetas
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.service-card, .problem-card, .audience-card, .diff-card');
+    cards.forEach(card => {
+        new CardTilt(card, {
+            maxTilt: 5,
+            perspective: 1500,
+            scale: 1.03,
+            speed: 300,
+            glare: true,
+            maxGlare: 0.3
+        });
+    });
+});
+
+// ===================================
+// MAGNETIC BUTTON EFFECT
+// ===================================
+class MagneticButton {
+    constructor(element) {
+        this.element = element;
+        this.boundingRect = null;
+        
+        this.element.addEventListener('mouseenter', () => {
+            this.boundingRect = this.element.getBoundingClientRect();
+        });
+        
+        this.element.addEventListener('mousemove', (e) => {
+            if (!this.boundingRect) return;
+            
+            const x = e.clientX - this.boundingRect.left - this.boundingRect.width / 2;
+            const y = e.clientY - this.boundingRect.top - this.boundingRect.height / 2;
+            
+            const distance = Math.sqrt(x * x + y * y);
+            const maxDistance = 50;
+            
+            if (distance < maxDistance) {
+                const strength = (maxDistance - distance) / maxDistance;
+                const translateX = x * strength * 0.3;
+                const translateY = y * strength * 0.3;
+                
+                this.element.style.transform = `translate(${translateX}px, ${translateY}px)`;
+            }
+        });
+        
+        this.element.addEventListener('mouseleave', () => {
+            this.element.style.transform = '';
+            this.boundingRect = null;
+        });
+    }
+}
+
+// Aplicar efecto magnético a botones principales
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.btn-primary, .nav-cta');
+    buttons.forEach(button => {
+        new MagneticButton(button);
+    });
+});
+
+// ===================================
+// PARALLAX SCROLL EFFECT FOR SECTIONS
+// ===================================
+const parallaxElements = document.querySelectorAll('.service-icon, .problem-icon, .diff-icon');
+
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    
+    parallaxElements.forEach((element, index) => {
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top + scrolled;
+        const speed = 0.3 + (index % 3) * 0.1;
+        
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const yPos = -(scrolled - elementTop) * speed;
+            element.style.transform = `translateY(${yPos}px)`;
+        }
+    });
+});
+
+// ===================================
+// ANIMATED GRADIENT BACKGROUNDS
+// ===================================
+const createAnimatedGradient = (element) => {
+    let angle = 0;
+    
+    const animate = () => {
+        angle = (angle + 0.5) % 360;
+        element.style.background = `
+            linear-gradient(${angle}deg, 
+                rgba(8, 145, 178, 0.1) 0%, 
+                rgba(59, 130, 246, 0.1) 50%, 
+                rgba(6, 182, 212, 0.1) 100%)
+        `;
+        requestAnimationFrame(animate);
+    };
+    
+    animate();
+};
+
+// ===================================
+// INTERSECTION OBSERVER FOR STAGGER ANIMATIONS
+// ===================================
+const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll('.service-card, .problem-card, .audience-card, .diff-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            staggerObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+// Observar grids para animación escalonada
+const grids = document.querySelectorAll('.services-grid, .problems-grid, .audience-grid, .diff-grid');
+grids.forEach(grid => staggerObserver.observe(grid));
+
+// ===================================
+// CURSOR TRAIL EFFECT (SUTIL)
+// ===================================
+const createCursorTrail = () => {
+    const cursor = document.createElement('div');
+    cursor.classList.add('cursor-trail');
+    document.body.appendChild(cursor);
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    const animateCursor = () => {
+        const dx = mouseX - cursorX;
+        const dy = mouseY - cursorY;
+        
+        cursorX += dx * 0.1;
+        cursorY += dy * 0.1;
+        
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        
+        requestAnimationFrame(animateCursor);
+    };
+    
+    animateCursor();
+};
+
+// Activar cursor trail en desktop
+if (window.innerWidth > 1024) {
+    createCursorTrail();
+}
+
+console.log('✨ Advanced interactions loaded!');
