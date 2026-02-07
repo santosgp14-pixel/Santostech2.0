@@ -163,77 +163,7 @@ if (scrollProgress) {
 // ===================================
 // CONTACT FORM HANDLING
 // ===================================
-const contactForm = document.getElementById('contactForm');
-const formSuccess = document.getElementById('formSuccess');
-const formError = document.getElementById('formError');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // Obtener datos del formulario
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value || 'No proporcionado',
-            company: document.getElementById('company').value || 'No proporcionado',
-            message: document.getElementById('message').value
-        };
-        
-        // Mostrar estado de carga
-        const btnText = contactForm.querySelector('.btn-text');
-        const btnLoading = contactForm.querySelector('.btn-loading');
-        const submitBtn = contactForm.querySelector('.btn-submit');
-        
-        btnText.style.display = 'none';
-        btnLoading.style.display = 'flex';
-        submitBtn.disabled = true;
-        
-        // Simular envío
-        try {
-            // Crear mensaje para WhatsApp
-            const whatsappMessage = `Hola! Mi nombre es ${formData.name}.%0A%0AEmail: ${formData.email}%0ATel: ${formData.phone}%0AEmpresa: ${formData.company}%0A%0AMensaje:%0A${formData.message}`;
-            const whatsappLink = `https://wa.me/541126730434?text=${whatsappMessage}`;
-            
-            // Simular delay de envío
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Ocultar formulario y mostrar mensaje de éxito
-            contactForm.style.display = 'none';
-            formSuccess.style.display = 'flex';
-            
-            // Abrir WhatsApp después de 2 segundos
-            setTimeout(() => {
-                window.open(whatsappLink, '_blank');
-            }, 2000);
-            
-        } catch (error) {
-            console.error('Error:', error);
-            contactForm.style.display = 'none';
-            formError.style.display = 'flex';
-        } finally {
-            btnText.style.display = 'inline';
-            btnLoading.style.display = 'none';
-            submitBtn.disabled = false;
-        }
-    });
-    
-    // Resetear formulario cuando se hace clic en los mensajes
-    if (formSuccess) {
-        formSuccess.addEventListener('click', () => {
-            formSuccess.style.display = 'none';
-            contactForm.style.display = 'flex';
-            contactForm.reset();
-        });
-    }
-    
-    if (formError) {
-        formError.addEventListener('click', () => {
-            formError.style.display = 'none';
-            contactForm.style.display = 'flex';
-        });
-    }
-}
+// Movido a contact-form.js para integración con Google Sheets
 
 // ===================================
 // PERFORMANCE OPTIMIZATIONS
@@ -453,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===================================
 // PARALLAX SCROLL EFFECT FOR SECTIONS
 // ===================================
-const parallaxElements = document.querySelectorAll('.service-icon, .problem-icon, .diff-icon');
+const parallaxElements = document.querySelectorAll('.service-icon, .diff-icon');
 
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;

@@ -193,3 +193,116 @@ updateExtraField();
 generateMessage();
 
 console.log('🚀 Demo de automatización cargada correctamente!');
+
+// ================================================
+// TAB SWITCHING FUNCTIONALITY
+// ================================================
+const demoTabs = document.querySelectorAll('.demo-tab');
+const tabContents = document.querySelectorAll('.tab-content');
+
+demoTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const targetTab = tab.dataset.tab;
+        
+        // Remove active class from all tabs and contents
+        demoTabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(`tab-${targetTab}`).classList.add('active');
+    });
+});
+
+// ================================================
+// ROI CALCULATOR FUNCTIONALITY
+// ================================================
+const calculateBtn = document.getElementById('calculateBtn');
+const taskNameInput = document.getElementById('taskName');
+const timePerTaskInput = document.getElementById('timePerTask');
+const timesPerWeekInput = document.getElementById('timesPerWeek');
+const hourlyCostInput = document.getElementById('hourlyCost');
+
+const timeSavedWeekEl = document.getElementById('timeSavedWeek');
+const moneySavedMonthEl = document.getElementById('moneySavedMonth');
+const timeSavedYearEl = document.getElementById('timeSavedYear');
+const roiPercentageEl = document.getElementById('roiPercentage');
+const newClientsEl = document.getElementById('newClients');
+const strategicHoursEl = document.getElementById('strategicHours');
+
+function calculateROI() {
+    const minutesPerTask = parseFloat(timePerTaskInput.value) || 0;
+    const timesPerWeek = parseFloat(timesPerWeekInput.value) || 0;
+    const costPerHour = parseFloat(hourlyCostInput.value) || 0;
+    
+    // Calculations
+    const minutesPerWeek = minutesPerTask * timesPerWeek;
+    const hoursPerWeek = minutesPerWeek / 60;
+    const hoursPerMonth = hoursPerWeek * 4;
+    const hoursPerYear = hoursPerWeek * 52;
+    
+    const savingsPerMonth = hoursPerMonth * costPerHour;
+    const savingsPerYear = hoursPerYear * costPerHour;
+    
+    // Typical automation cost assumption: 1-2 months of savings
+    const automationCost = savingsPerMonth * 1.5;
+    const roi = ((savingsPerYear - automationCost) / automationCost) * 100;
+    
+    // Additional insights
+    const newClientsPerMonth = Math.floor(hoursPerMonth / 2); // Assuming 2 hours per new client
+    const strategicHours = Math.floor(hoursPerMonth * 0.8);
+    
+    // Update UI
+    timeSavedWeekEl.textContent = hoursPerWeek.toFixed(1);
+    moneySavedMonthEl.textContent = `ARS ${savingsPerMonth.toLocaleString('es-AR', { maximumFractionDigits: 0 })}`;
+    timeSavedYearEl.textContent = Math.floor(hoursPerYear);
+    roiPercentageEl.textContent = `${Math.max(roi, 0).toFixed(0)}%`;
+    newClientsEl.textContent = Math.max(newClientsPerMonth, 1);
+    strategicHoursEl.textContent = Math.max(strategicHours, 1);
+    
+    // Add animation
+    [timeSavedWeekEl, moneySavedMonthEl, timeSavedYearEl, roiPercentageEl].forEach(el => {
+        el.style.animation = 'none';
+        setTimeout(() => {
+            el.style.animation = 'countUp 0.6s ease-out';
+        }, 10);
+    });
+}
+
+// Real-time calculation on input change
+if (calculateBtn) {
+    calculateBtn.addEventListener('click', calculateROI);
+    
+    // Auto-calculate on input change
+    [timePerTaskInput, timesPerWeekInput, hourlyCostInput].forEach(input => {
+        if (input) {
+            input.addEventListener('input', () => {
+                // Small delay for better UX
+                clearTimeout(window.roiCalcTimeout);
+                window.roiCalcTimeout = setTimeout(calculateROI, 500);
+            });
+        }
+    });
+    
+    // Initial calculation
+    calculateROI();
+}
+
+// Add count-up animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes countUp {
+        0% {
+            opacity: 0;
+            transform: translateY(10px) scale(0.9);
+        }
+        50% {
+            transform: translateY(-5px) scale(1.05);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+`;
+document.head.appendChild(style);
