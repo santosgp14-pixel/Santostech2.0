@@ -1,5 +1,5 @@
 // URL de Google Apps Script para guardar los datos en Google Sheets
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx4COHR2_Br_gfJe86V5uvLIbAt2jUs2qXSdVixr1ruepc1pVnx8WEpBouqQX2r57Xo/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxLtg8hie7RZ5wziu-UyAj1-UAdz9RKkNXcYNImZnufgyicZiIoMkDUKwgNGvHNcCelKg/exec';
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
