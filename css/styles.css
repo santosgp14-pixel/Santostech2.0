@@ -1623,7 +1623,7 @@ footer p {
 .whatsapp-float {
     position: fixed;
     bottom: 24px;
-    right: 24px;
+    left: 24px;
     width: 60px;
     height: 60px;
     background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
@@ -1646,13 +1646,13 @@ footer p {
 
 .whatsapp-float:hover .whatsapp-tooltip {
     opacity: 1;
-    transform: translateX(-8px);
+    transform: translateX(8px);
 }
 
 .whatsapp-tooltip {
     position: absolute;
-    right: 100%;
-    margin-right: 16px;
+    left: 100%;
+    margin-left: 16px;
     background: var(--secondary-dark);
     color: white;
     padding: 8px 16px;
@@ -1668,12 +1668,12 @@ footer p {
 .whatsapp-tooltip::after {
     content: '';
     position: absolute;
-    right: -6px;
+    left: -6px;
     top: 50%;
     transform: translateY(-50%);
     width: 0;
     height: 0;
-    border-left: 6px solid var(--secondary-dark);
+    border-right: 6px solid var(--secondary-dark);
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
 }
@@ -2025,7 +2025,9 @@ footer::before {
 }
 
 .footer-bottom {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
     z-index: 1;
 }
@@ -2034,6 +2036,12 @@ footer::before {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
+}
+
+.footer-credits {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* ===================================
@@ -5137,6 +5145,44 @@ footer::before {
 
 
 /* ===================================
+   FOOTER — SOPORTE LINK
+   =================================== */
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.footer-soporte-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary, #94a3b8);
+    text-decoration: none;
+    padding: 5px 12px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 20px;
+    transition: all 0.25s ease;
+    letter-spacing: 0.02em;
+}
+
+.footer-soporte-link:hover {
+    color: var(--primary, #0891b2);
+    border-color: rgba(8, 145, 178, 0.35);
+    background: rgba(8, 145, 178, 0.06);
+}
+
+.footer-soporte-link.active {
+    color: var(--primary, #0891b2);
+    border-color: rgba(8, 145, 178, 0.3);
+    background: rgba(8, 145, 178, 0.08);
+}
+
+/* ===================================
    FOOTER CREDITS
    =================================== */
 
@@ -5145,7 +5191,7 @@ footer::before {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    margin-top: 16px;
+    margin-top: 0;
     font-size: 0.95rem;
     color: #94a3b8;
 }

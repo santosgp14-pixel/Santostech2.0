@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0891b2">
+    <title>Soporte para Clientes — SantOps</title>
+    <link rel="icon" type="image/svg+xml" href="media/logo-icon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/soporte.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="brand-logo">
+                    <svg class="logo-wordmark" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" class="logo-text-svg" fill="#1e3a5f" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="600">Sant</text>
+                        <g transform="translate(82, 20)">
+                            <circle cx="0" cy="0" r="14" fill="none" stroke="url(#logoGradient)" stroke-width="3.5" stroke-dasharray="75 13" stroke-linecap="round" transform="rotate(-95)"/>
+                            <circle cx="0" cy="0" r="6" fill="url(#logoGradientInner)" opacity="0.3"/>
+                        </g>
+                        <text x="98" y="30" class="logo-text-svg" fill="#0891b2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="600">ps</text>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="-14" y1="-14" x2="14" y2="14" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#0891b2"/>
+                                <stop offset="50%" stop-color="#06b6d4"/>
+                                <stop offset="100%" stop-color="#3b82f6"/>
+                            </linearGradient>
+                            <radialGradient id="logoGradientInner" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#06b6d4"/>
+                                <stop offset="100%" stop-color="#0891b2"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="16" fill="none" stroke="url(#iconGradient)" stroke-width="4" stroke-dasharray="85 15" stroke-linecap="round" transform="rotate(-95 20 20)"/>
+                        <circle cx="20" cy="20" r="8" fill="url(#iconGradientInner)" opacity="0.4"/>
+                        <defs>
+                            <linearGradient id="iconGradient" x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#0891b2"/>
+                                <stop offset="50%" stop-color="#06b6d4"/>
+                                <stop offset="100%" stop-color="#3b82f6"/>
+                            </linearGradient>
+                            <radialGradient id="iconGradientInner" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(20 20) scale(8)">
+                                <stop offset="0%" stop-color="#06b6d4"/>
+                                <stop offset="100%" stop-color="#0891b2"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </a>
+                <nav class="main-nav">
+                    <a href="index.html">Inicio</a>
+                    <a href="index.html#proceso">Proceso</a>
+                    <a href="demo.html">Demo</a>
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+                <button class="mobile-menu-toggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <a href="contacto.html" class="nav-cta">Contactar</a>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <nav>
+                <a href="index.html" class="mobile-menu-item">Inicio</a>
+                <a href="index.html#proceso" class="mobile-menu-item">Proceso</a>
+                <a href="demo.html" class="mobile-menu-item">Demo</a>
+                <a href="contacto.html" class="mobile-menu-item">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- PANTALLA 1: ACCESO DE CLIENTES               -->
+    <!-- ============================================ -->
+    <div id="ticketGate" class="ticket-gate-screen">
+        <div class="ticket-gate-bg">
+            <div class="gate-orb gate-orb-1"></div>
+            <div class="gate-orb gate-orb-2"></div>
+            <div class="gate-grid"></div>
+        </div>
+        <div class="ticket-gate-content">
+            <div class="gate-icon-wrap">
+                <div class="gate-icon-ring"></div>
+                <div class="gate-icon-ring gate-icon-ring-2"></div>
+                <svg class="gate-lock-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="22" width="32" height="22" rx="6" fill="url(#lockGrad)" opacity="0.15"/>
+                    <rect x="8" y="22" width="32" height="22" rx="6" stroke="url(#lockGrad)" stroke-width="2.5"/>
+                    <path d="M15 22V16a9 9 0 0 1 18 0v6" stroke="url(#lockGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="24" cy="34" r="3" fill="url(#lockGrad)"/>
+                    <line x1="24" y1="37" x2="24" y2="40" stroke="url(#lockGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="lockGrad" x1="8" y1="8" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#06b6d4"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="gate-badge">
+                <span class="gate-badge-dot"></span>
+                Área exclusiva para clientes
+            </div>
+
+            <h1 class="gate-title">Portal de Soporte</h1>
+            <p class="gate-subtitle">Ingresá tu código de acceso para abrir un ticket de soporte. Si no tenés tu código, <a href="contacto.html">contactate con nosotros</a>.</p>
+
+            <div class="gate-form-wrap">
+                <div class="gate-input-group">
+                    <label for="clientCode" class="gate-label">Código de cliente</label>
+                    <div class="gate-input-wrap">
+                        <svg class="gate-input-icon" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 1a5 5 0 0 0-5 5v2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 5a3 3 0 1 1 6 0v2H7V6zm3 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" fill="currentColor"/>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="clientCode" 
+                            class="gate-input" 
+                            placeholder="ST-CLIENT-XX" 
+                            autocomplete="off"
+                            autocapitalize="characters"
+                            spellcheck="false"
+                        >
+                    </div>
+                    <p id="gateError" class="gate-error" style="display:none;">
+                        <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 3.5a.75.75 0 1 1 1.5 0v3.25a.75.75 0 1 1-1.5 0V4.5zm.75 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                        Código incorrecto. Verificá e intentá de nuevo.
+                    </p>
+                </div>
+                <button id="gateSubmit" class="gate-btn" onclick="checkClientCode()">
+                    <span class="gate-btn-text">
+                        Acceder al Portal
+                        <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+                            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="gate-btn-loading" style="display:none;">
+                        <svg class="spinner" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="40 12" stroke-linecap="round"/>
+                        </svg>
+                        Verificando...
+                    </span>
+                </button>
+            </div>
+
+            <div class="gate-trust">
+                <div class="gate-trust-item">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1l1.5 4.5H15l-4 3 1.5 4.5L8 10l-4.5 3L5 8.5 1 5.5h5.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    Acceso seguro
+                </div>
+                <div class="gate-trust-item">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3.5l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Respuesta en 24h
+                </div>
+                <div class="gate-trust-item">
+                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 8a6 6 0 1 0 12 0A6 6 0 0 0 2 8zm4 0l2 2 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Seguimiento garantizado
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PANTALLA 2: FORMULARIO DE TICKET             -->
+    <!-- ============================================ -->
+    <div id="ticketForm" class="ticket-form-screen" style="display:none;">
+
+        <!-- Hero del formulario -->
+        <section class="ticket-hero">
+            <div class="ticket-hero-bg">
+                <div class="ticket-orb ticket-orb-1"></div>
+                <div class="ticket-orb ticket-orb-2"></div>
+            </div>
+            <div class="container">
+                <div class="ticket-hero-inner">
+                    <div class="ticket-client-badge" id="clientBadgeDisplay">
+                        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zM2 14.5a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        <span id="clientCodeDisplay">Cliente</span>
+                    </div>
+                    <h1 class="ticket-hero-title">¿En qué podemos ayudarte?</h1>
+                    <p class="ticket-hero-subtitle">Completá el formulario con el mayor detalle posible. Te asignamos un número de ticket y respondemos en menos de 24 horas.</p>
+
+                    <!-- Stepper -->
+                    <div class="ticket-stepper">
+                        <div class="stepper-item active" id="step-indicator-1">
+                            <div class="stepper-dot">
+                                <span class="stepper-num">1</span>
+                                <svg class="stepper-check" viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8l3.5 3.5L13 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="stepper-label">Tu información</div>
+                        </div>
+                        <div class="stepper-line"></div>
+                        <div class="stepper-item" id="step-indicator-2">
+                            <div class="stepper-dot">
+                                <span class="stepper-num">2</span>
+                                <svg class="stepper-check" viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8l3.5 3.5L13 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="stepper-label">Detalle del ticket</div>
+                        </div>
+                        <div class="stepper-line"></div>
+                        <div class="stepper-item" id="step-indicator-3">
+                            <div class="stepper-dot">
+                                <span class="stepper-num">3</span>
+                                <svg class="stepper-check" viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 8l3.5 3.5L13 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="stepper-label">Confirmación</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario principal -->
+        <section class="ticket-form-section">
+            <div class="container">
+                <div class="ticket-form-card">
+
+                    <form id="ticketMainForm" novalidate>
+
+                        <!-- PASO 1: Información del cliente -->
+                        <div class="form-step" id="formStep1">
+                            <div class="form-step-header">
+                                <div class="form-step-number">01</div>
+                                <div>
+                                    <h2 class="form-step-title">Tu información</h2>
+                                    <p class="form-step-desc">¿Con quién hablamos?</p>
+                                </div>
+                            </div>
+
+                            <div class="ticket-form-grid">
+                                <div class="ticket-field">
+                                    <label for="t_name" class="ticket-label">
+                                        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zM2 14.5a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                        Nombre completo <span class="req">*</span>
+                                    </label>
+                                    <input type="text" id="t_name" name="name" class="ticket-input" placeholder="Juan Pérez" required>
+                                    <span class="field-error" id="err_name"></span>
+                                </div>
+                                <div class="ticket-field">
+                                    <label for="t_email" class="ticket-label">
+                                        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4zm0 0l6 5 6-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                        Email <span class="req">*</span>
+                                    </label>
+                                    <input type="email" id="t_email" name="email" class="ticket-input" placeholder="juan@empresa.com" required>
+                                    <span class="field-error" id="err_email"></span>
+                                </div>
+                                <div class="ticket-field">
+                                    <label for="t_company" class="ticket-label">
+                                        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><rect x="1" y="4" width="14" height="11" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V2h6v2" stroke="currentColor" stroke-width="1.5"/></svg>
+                                        Empresa
+                                    </label>
+                                    <input type="text" id="t_company" name="company" class="ticket-input" placeholder="Mi Empresa SRL">
+                                </div>
+                                <div class="ticket-field">
+                                    <label for="t_phone" class="ticket-label">
+                                        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 1h4l1.5 3.5-2 1.5a8 8 0 0 0 3.5 3.5l1.5-2L15 9v4c0 1.1-.9 2-2 2A12 12 0 0 1 1 3c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        Teléfono
+                                    </label>
+                                    <input type="tel" id="t_phone" name="phone" class="ticket-input" placeholder="+54 11 1234-5678">
+                                </div>
+                            </div>
+
+                            <div class="form-step-actions">
+                                <button type="button" class="ticket-btn-next" onclick="goToStep(2)">
+                                    Continuar
+                                    <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+                                        <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PASO 2: Detalle del ticket -->
+                        <div class="form-step" id="formStep2" style="display:none;">
+                            <div class="form-step-header">
+                                <div class="form-step-number">02</div>
+                                <div>
+                                    <h2 class="form-step-title">Detalle del ticket</h2>
+                                    <p class="form-step-desc">Cuanto más detalle, más rápido te ayudamos.</p>
+                                </div>
+                            </div>
+
+                            <div class="ticket-selects-row">
+                                <div class="ticket-field">
+                                    <label for="t_category" class="ticket-label">
+                                        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 3h12M2 8h8M2 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                        Categoría <span class="req">*</span>
+                                    </label>
+                                    <div class="ticket-select-wrap">
+                                        <select id="t_category" name="category" class="ticket-select" required onchange="updateCategoryIcon()">
+                                            <option value="" disabled selected>Seleccioná una categoría</option>
+                                            <option value="bug">🐛 Bug / Error en el sistema</option>
+                                            <option value="soporte">🔧 Soporte técnico</option>
+                                            <option value="funcionalidad">💡 Nueva funcionalidad</option>
+                                            <option value="consulta">💬 Consulta general</option>
+                                        </select>
+                                        <svg class="select-chevron" viewBox="0 0 16 16" fill="none" width="16" height="16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </div>
+                                    <span class="field-error" id="err_category"></span>
+                                </div>
+
+                                <div class="ticket-field">
+                                    <label for="t_priority" class="ticket-label">
+                                        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 2v8M8 12v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                        Prioridad <span class="req">*</span>
+                                    </label>
+                                    <div class="ticket-select-wrap">
+                                        <select id="t_priority" name="priority" class="ticket-select" required onchange="updatePriorityBadge()">
+                                            <option value="" disabled selected>Seleccioná prioridad</option>
+                                            <option value="baja">🟢 Baja — Cuando puedas</option>
+                                            <option value="media">🟡 Media — Esta semana</option>
+                                            <option value="alta">🔴 Alta — Hoy</option>
+                                            <option value="urgente">🚨 Urgente — Ahora mismo</option>
+                                        </select>
+                                        <svg class="select-chevron" viewBox="0 0 16 16" fill="none" width="16" height="16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </div>
+                                    <span class="field-error" id="err_priority"></span>
+                                </div>
+                            </div>
+
+                            <!-- Priority indicator pill -->
+                            <div class="priority-indicator" id="priorityIndicator" style="display:none;">
+                                <div class="priority-dot" id="priorityDot"></div>
+                                <span id="priorityLabel">Prioridad seleccionada</span>
+                                <div class="priority-bar-wrap">
+                                    <div class="priority-bar" id="priorityBar"></div>
+                                </div>
+                            </div>
+
+                            <div class="ticket-field">
+                                <label for="t_title" class="ticket-label">
+                                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12M2 8h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    Título del ticket <span class="req">*</span>
+                                </label>
+                                <input type="text" id="t_title" name="title" class="ticket-input" placeholder="Ej: El formulario de contacto no envía los datos" required maxlength="120">
+                                <div class="char-counter"><span id="charCount">0</span>/120</div>
+                                <span class="field-error" id="err_title"></span>
+                            </div>
+
+                            <div class="ticket-field">
+                                <label for="t_description" class="ticket-label">
+                                    <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 3h12v10H2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    Descripción detallada <span class="req">*</span>
+                                </label>
+                                <textarea id="t_description" name="description" class="ticket-textarea" rows="6" required placeholder="Describí el problema con el mayor detalle posible:&#10;&#10;• ¿Qué estabas haciendo cuando ocurrió?&#10;• ¿Qué esperabas que pasara?&#10;• ¿Qué pasó en realidad?&#10;• ¿Hay algún mensaje de error visible?"></textarea>
+                                <span class="field-error" id="err_description"></span>
+                            </div>
+
+                            <div class="form-step-actions two-actions">
+                                <button type="button" class="ticket-btn-back" onclick="goToStep(1)">
+                                    <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+                                        <path d="M16 10H4M9 5l-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Atrás
+                                </button>
+                                <button type="button" class="ticket-btn-next" onclick="submitTicket()">
+                                    <span id="submitBtnText">
+                                        Enviar ticket
+                                        <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+                                            <path d="M3 10l14-7-7 14V10H3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                    <span id="submitBtnLoading" style="display:none;">
+                                        <svg class="spinner" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="40 12" stroke-linecap="round"/>
+                                        </svg>
+                                        Enviando...
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <!-- PANTALLA 3: ÉXITO -->
+                    <div id="ticketSuccess" class="ticket-success-screen" style="display:none;">
+                        <div class="success-animation-wrap">
+                            <div class="success-ring success-ring-1"></div>
+                            <div class="success-ring success-ring-2"></div>
+                            <div class="success-ring success-ring-3"></div>
+                            <div class="success-checkmark">
+                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+                                    <path d="M10 24l10 10 18-18" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="check-path"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="success-ticket-id" id="successTicketId">
+                            <span class="ticket-id-label">Tu número de ticket</span>
+                            <span class="ticket-id-number" id="ticketIdDisplay">#ST-2026-0001</span>
+                            <button class="copy-btn" id="copyTicketId" onclick="copyTicketId()">
+                                <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><rect x="5" y="5" width="9" height="9" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M5 5V3a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                Copiar
+                            </button>
+                        </div>
+
+                        <h2 class="success-title">¡Ticket creado con éxito!</h2>
+                        <p class="success-message">Recibiste un email de confirmación con todos los detalles. Nuestro equipo revisará tu ticket y te responderá en menos de <strong>24 horas hábiles</strong>.</p>
+
+                        <div class="success-next-steps">
+                            <h3>¿Qué sigue ahora?</h3>
+                            <div class="next-steps-list">
+                                <div class="next-step">
+                                    <div class="next-step-icon">📧</div>
+                                    <div>
+                                        <strong>Revisá tu email</strong>
+                                        <span>Enviamos la confirmación con el detalle del ticket.</span>
+                                    </div>
+                                </div>
+                                <div class="next-step">
+                                    <div class="next-step-icon">🔍</div>
+                                    <div>
+                                        <strong>Análisis del problema</strong>
+                                        <span>Revisamos tu ticket y buscamos la mejor solución.</span>
+                                    </div>
+                                </div>
+                                <div class="next-step">
+                                    <div class="next-step-icon">💬</div>
+                                    <div>
+                                        <strong>Te contactamos</strong>
+                                        <span>Te escribimos por email o WhatsApp con la solución.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="success-actions">
+                            <button class="ticket-btn-new" onclick="resetTicketForm()">
+                                <svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M4 10a6 6 0 1 0 1.5-4M4 4v2.5h2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                Abrir otro ticket
+                            </button>
+                            <a href="index.html" class="ticket-btn-home">
+                                Volver al inicio
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Error genérico -->
+                    <div id="ticketError" class="ticket-error-msg" style="display:none;">
+                        <svg viewBox="0 0 48 48" fill="none" width="36" height="36"><circle cx="24" cy="24" r="20" fill="#ef4444" opacity="0.15"/><path d="M18 18l12 12m0-12L18 30" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/></svg>
+                        <div>
+                            <strong>Error al enviar el ticket</strong>
+                            <p>Por favor intentá de nuevo, o <a href="https://wa.me/541126730434">escribinos por WhatsApp</a>.</p>
+                        </div>
+                        <button onclick="document.getElementById('ticketError').style.display='none'">×</button>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar con info -->
+                <aside class="ticket-sidebar">
+                    <div class="sidebar-card sidebar-sla">
+                        <div class="sidebar-card-icon">⚡</div>
+                        <h3>Tiempo de respuesta</h3>
+                        <div class="sla-list">
+                            <div class="sla-item">
+                                <span class="sla-badge baja">🟢 Baja</span>
+                                <span class="sla-time">48–72 horas</span>
+                            </div>
+                            <div class="sla-item">
+                                <span class="sla-badge media">🟡 Media</span>
+                                <span class="sla-time">24 horas</span>
+                            </div>
+                            <div class="sla-item">
+                                <span class="sla-badge alta">🔴 Alta</span>
+                                <span class="sla-time">Mismo día</span>
+                            </div>
+                            <div class="sla-item">
+                                <span class="sla-badge urgente">🚨 Urgente</span>
+                                <span class="sla-time">< 2 horas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card sidebar-tip">
+                        <div class="sidebar-card-icon">💡</div>
+                        <h3>Tip para reportar mejor</h3>
+                        <p>Incluí capturas de pantalla en la descripción (link de imagen) o mencioná los pasos exactos para reproducir el problema. Esto acelera mucho la resolución.</p>
+                    </div>
+
+                    <div class="sidebar-card sidebar-contact">
+                        <div class="sidebar-card-icon">💬</div>
+                        <h3>¿Urgencia extrema?</h3>
+                        <p>Para temas críticos podés escribirnos directamente por WhatsApp.</p>
+                        <a href="https://wa.me/541126730434?text=Hola!%20Tengo%20un%20problema%20urgente%20con%20mi%20proyecto." class="sidebar-wa-btn" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Escribir por WhatsApp
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="media/logo-santops.svg" alt="SantOps Logo" class="footer-brand-logo">
+                    <p>Optimización inteligente para tu negocio</p>
+                </div>
+                <div class="footer-social">
+                    <a href="mailto:santosgp14@gmail.com" class="social-link" aria-label="Email">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/santops.lab" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SantOps - Soluciones Digitales</p>
+                <div class="footer-credits">
+                    <span>Hecho por</span>
+                    <img src="media/logo-santops.svg" alt="SantOps Logo" class="footer-logo">
+                    <span>y ❤️ en Argentina</span>
+                </div>
+                <a href="soporte.html" class="footer-soporte-link active">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M6 6.5a2 2 0 1 1 2 2v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.5" r="0.75" fill="currentColor"/></svg>
+                    Soporte
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/541126730434?text=Hola!%20Tengo%20una%20consulta%20de%20soporte." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Soporte por WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="whatsapp-tooltip">¿Urgente?</span>
+    </a>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <script src="js/animations.js"></script>
+    <script src="js/ticket-form.js"></script>
+</body>
+</html>
