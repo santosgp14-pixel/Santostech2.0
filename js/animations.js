@@ -1,23 +1,56 @@
-// Smooth scroll para los enlaces internos
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// Smooth scroll para los enlaces internos y cross-page
+document.querySelectorAll('a[href^="#"], a[href*="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            // Cerrar menú móvil si está abierto
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            if (mobileMenu && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
+        const href = this.getAttribute('href');
+        if (!href) return;
+        
+        const hashIndex = href.indexOf('#');
+        if (hashIndex === -1) return;
+        
+        const hash = href.substring(hashIndex);
+        const pathPart = href.substring(0, hashIndex);
+        
+        const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+        const isCurrentIndex = currentFile === 'index.html' || currentFile === '';
+        const isTargetingCurrentPage = !pathPart || 
+                                      (pathPart === 'index.html' && isCurrentIndex) ||
+                                      (pathPart === currentFile);
+
+        if (isTargetingCurrentPage && hash !== '#' && hash !== '') {
+            const target = document.querySelector(hash);
+            if (target) {
+                e.preventDefault();
+                // Cerrar menú móvil si está abierto
+                const mobileMenu = document.querySelector('.mobile-menu');
+                const menuToggle = document.querySelector('.mobile-menu-toggle');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+                
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                history.pushState(null, null, hash);
             }
-            
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
         }
     });
+});
+
+// Manejo de hash al cargar la página (ej: desde contacto.html hacia index.html#proceso)
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        setTimeout(() => {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }, 150);
+    }
 });
 
 // Mobile Menu Toggle

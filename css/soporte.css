@@ -477,7 +477,7 @@
     height: 40px;
     border-radius: 50%;
     border: 2px solid var(--border);
-    background: white;
+    background: #0b101b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -673,15 +673,15 @@
 }
 
 .ticket-input:hover {
-    border-color: rgba(8, 145, 178, 0.3);
-    background: white;
+    border-color: rgba(59, 130, 246, 0.4);
+    background: #0d1320;
 }
 
 .ticket-input:focus {
-    border-color: var(--primary);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1),
-                0 2px 8px rgba(8, 145, 178, 0.1);
+    border-color: var(--primary-light);
+    background: #0d1320;
+    box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.2),
+                0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .ticket-input.error {
@@ -711,14 +711,14 @@
 }
 
 .ticket-select:hover {
-    border-color: rgba(8, 145, 178, 0.3);
-    background: white;
+    border-color: rgba(59, 130, 246, 0.4);
+    background: #0d1320;
 }
 
 .ticket-select:focus {
-    border-color: var(--primary);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+    border-color: var(--primary-light);
+    background: #0d1320;
+    box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.2);
 }
 
 .select-chevron {
@@ -809,12 +809,12 @@
     line-height: 1.7;
 }
 
-.ticket-textarea:hover { border-color: rgba(8, 145, 178, 0.3); background: white; }
+.ticket-textarea:hover { border-color: rgba(59, 130, 246, 0.4); background: #0d1320; }
 
 .ticket-textarea:focus {
-    border-color: var(--primary);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+    border-color: var(--primary-light);
+    background: #0d1320;
+    box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.2);
 }
 
 /* Char counter */
@@ -1112,15 +1112,15 @@
     align-items: flex-start;
     gap: 14px;
     padding: 16px;
-    background: white;
+    background: rgba(13, 19, 32, 0.8);
     border-radius: var(--ticket-radius-sm);
-    border: 1px solid var(--border-light);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
 }
 
 .next-step:hover {
-    border-color: rgba(8, 145, 178, 0.2);
-    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     transform: translateX(4px);
 }
 
@@ -1176,9 +1176,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: white;
-    color: var(--text-secondary);
-    border: 1.5px solid var(--border);
+    background: rgba(16, 24, 39, 0.8);
+    color: #e2e8f0;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--ticket-radius-sm);
     padding: 13px 24px;
     font-size: 15px;

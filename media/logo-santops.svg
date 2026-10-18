@@ -1,6 +1,6 @@
 <svg viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <!-- Sant -->
-    <text x="0" y="30" fill="#1e3a5f" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="600">Sant</text>
+    <text x="0" y="30" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="600">Sant</text>
     
     <!-- O distintiva (círculo incompleto - proceso) -->
     <g transform="translate(82, 20)">
