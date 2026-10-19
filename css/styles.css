@@ -7201,11 +7201,18 @@ html {
 }
 
 
+.mobile-only {
+    display: none !important;
+}
+
 /* ==========================================================================
    FIXES RESPONSIVE TOTALES (MOBILE MENU, HERO CUT-OFF & FOOTER STACK)
    ========================================================================== */
 
 @media (max-width: 900px) {
+    .mobile-only {
+        display: flex !important;
+    }
     /* Prevención global de desborde horizontal en mobile */
     html, body {
         overflow-x: hidden !important;
@@ -7441,35 +7448,256 @@ html {
         box-sizing: border-box !important;
     }
 
+    /* Consola Interactiva (Live Preview) en Mobile */
+    .hero-stats-new {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 10px auto 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
     .studio-console {
         width: 100% !important;
         max-width: 100% !important;
-        margin-top: 10px !important;
+        margin: 0 !important;
         box-sizing: border-box !important;
+        border-radius: 14px !important;
+        overflow: hidden !important;
     }
 
     .console-header {
-        padding: 10px 14px !important;
+        padding: 9px 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 6px !important;
+    }
+
+    .console-dots {
+        gap: 4px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .console-dot {
+        width: 8px !important;
+        height: 8px !important;
+    }
+
+    .console-title {
+        font-size: 11px !important;
+        max-width: 160px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        letter-spacing: 0 !important;
+    }
+
+    .console-status-badge {
+        font-size: 10px !important;
+        padding: 2px 6px !important;
+        flex-shrink: 0 !important;
     }
 
     .console-tabs {
+        display: flex !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
         padding: 4px 6px 0 !important;
-        gap: 3px !important;
+        gap: 4px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .console-tabs::-webkit-scrollbar {
+        display: none !important;
     }
 
     .console-tab {
-        padding: 7px 10px !important;
+        flex-shrink: 0 !important;
+        padding: 6px 10px !important;
         font-size: 11px !important;
+        white-space: nowrap !important;
+        gap: 4px !important;
+    }
+
+    .console-tab svg {
+        width: 12px !important;
+        height: 12px !important;
     }
 
     .console-body {
-        padding: 16px !important;
+        padding: 14px !important;
         min-height: auto !important;
+        box-sizing: border-box !important;
     }
 
     .sim-slots-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+    }
+
+    .sim-slot-btn {
+        padding: 8px 4px !important;
+        font-size: 11px !important;
+        gap: 2px !important;
+    }
+
+    .sim-slot-btn .slot-status {
+        font-size: 9px !important;
+    }
+
+    .sim-product-name {
+        font-size: 13px !important;
+    }
+
+    .sim-price-editor {
+        padding: 8px 10px !important;
+    }
+
+    .sim-price-input {
+        width: 75px !important;
+        font-size: 14px !important;
+        padding: 3px 6px !important;
+    }
+
+    .sim-catalog-note {
+        font-size: 10.5px !important;
+    }
+
+    .sim-audit-item {
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+    }
+
+    /* ===================================
+       CARRUSELES TÁCTILES MOBILE
+       =================================== */
+    /* Carrusel 1: Proyectos Reales */
+    .projects-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-behavior: smooth !important;
+        gap: 16px !important;
+        padding: 10px 4px 14px !important;
+        margin: 16px 0 0 !important;
+        width: 100% !important;
+        scrollbar-width: none !important;
+    }
+
+    .projects-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .project-card {
+        flex: 0 0 calc(100% - 28px) !important;
+        max-width: calc(100% - 28px) !important;
+        min-width: 280px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+    }
+
+    /* Carrusel 2: Flujo de Trabajo Paso a Paso */
+    .process-pipeline-wrapper {
+        margin: 16px 0 0 !important;
+        overflow: visible !important;
+    }
+
+    .pipeline-track {
+        display: none !important;
+    }
+
+    .process-cards-horizontal {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-behavior: smooth !important;
+        gap: 16px !important;
+        padding: 10px 4px 14px !important;
+        margin: 0 !important;
+        width: 100% !important;
+        scrollbar-width: none !important;
+    }
+
+    .process-cards-horizontal::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .process-step-card {
+        flex: 0 0 calc(100% - 28px) !important;
+        max-width: calc(100% - 28px) !important;
+        min-width: 280px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+    }
+
+    /* Controles de Carrusel (Flechas y Puntos Indicadores) */
+    .carousel-controls {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        margin-top: 14px !important;
+        margin-bottom: 24px !important;
+        width: 100% !important;
+    }
+
+    .carousel-arrow {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        background: rgba(13, 19, 32, 0.85) !important;
+        border: 1px solid rgba(56, 189, 248, 0.35) !important;
+        color: #38bdf8 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        transition: all 0.25s ease !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+
+    .carousel-arrow:active {
+        transform: scale(0.92) !important;
+        background: rgba(6, 182, 212, 0.25) !important;
+        border-color: #38bdf8 !important;
+    }
+
+    .carousel-dots {
+        display: flex !important;
+        align-items: center !important;
         gap: 8px !important;
+    }
+
+    .carousel-dot {
+        width: 8px !important;
+        height: 8px !important;
+        border-radius: 4px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        cursor: pointer !important;
+        display: inline-block !important;
+    }
+
+    .carousel-dot.active {
+        width: 26px !important;
+        background: linear-gradient(90deg, #06b6d4, #3b82f6) !important;
+        box-shadow: 0 0 10px rgba(6, 182, 212, 0.6) !important;
     }
 
     /* 3. Prevenir overflow en CTA Final */

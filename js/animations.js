@@ -627,3 +627,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ==========================================================================
+// CONTROLADORES DE CARRUSEL MOBILE (PROYECTOS & FLUJO DE TRABAJO)
+// ==========================================================================
+window.scrollCarousel = function(containerId, direction) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const card = container.firstElementChild;
+    if (!card) return;
+    const scrollAmount = card.offsetWidth + 16;
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+};
+
+window.goToCarouselSlide = function(containerId, index) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const cards = container.children;
+    if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+};
+
+function initCarousels() {
+    const pairs = [
+        { id: 'projectsGrid', dotsId: 'projectsDots' },
+        { id: 'processCardsHorizontal', dotsId: 'processDots' }
+    ];
+
+    pairs.forEach(({ id, dotsId }) => {
+        const container = document.getElementById(id);
+        const dotsContainer = document.getElementById(dotsId);
+        if (!container || !dotsContainer) return;
+
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        const cards = Array.from(container.children);
+
+        let isTicking = false;
+        container.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrollLeft = container.scrollLeft;
+                    const containerWidth = container.offsetWidth;
+                    let activeIndex = 0;
+                    let minDistance = Infinity;
+
+                    cards.forEach((card, idx) => {
+                        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+                        const viewCenter = scrollLeft + containerWidth / 2;
+                        const distance = Math.abs(cardCenter - viewCenter);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            activeIndex = idx;
+                        }
+                    });
+
+                    dots.forEach((dot, idx) => {
+                        dot.classList.toggle('active', idx === activeIndex);
+                    });
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        }, { passive: true });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousels);
+} else {
+    initCarousels();
+}
+

@@ -44,7 +44,7 @@
     <link rel="dns-prefetch" href="https://script.google.com">
     
     <title>SantOps - Desarrollo de Herramientas Web & Plataformas Autogestionables</title>
-    <link rel="stylesheet" href="css/styles.css?v=mobile_v2">
+    <link rel="stylesheet" href="css/styles.css?v=mobile_v4">
 </head>
 <body>
     <!-- Animated Background Particles -->
@@ -472,7 +472,7 @@
             <h2 class="section-title">Herramientas creadas para negocios reales</h2>
             <p class="section-subtitle">Prueba en tiempo real las soluciones funcionales que construimos e interactúa con ellas directamente dentro de SantOps.</p>
             
-            <div class="projects-grid">
+            <div class="projects-grid" id="projectsGrid">
                 <!-- Proyecto 01: Cotizador Inteligente -->
                 <div class="project-card">
                     <div>
@@ -569,6 +569,21 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Mobile Carousel Controls for Proyectos -->
+            <div class="carousel-controls mobile-only" id="projectsCarouselControls">
+                <button class="carousel-arrow prev" aria-label="Anterior proyecto" onclick="window.scrollCarousel('projectsGrid', -1)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="carousel-dots" id="projectsDots">
+                    <span class="carousel-dot active" onclick="window.goToCarouselSlide('projectsGrid', 0)"></span>
+                    <span class="carousel-dot" onclick="window.goToCarouselSlide('projectsGrid', 1)"></span>
+                    <span class="carousel-dot" onclick="window.goToCarouselSlide('projectsGrid', 2)"></span>
+                </div>
+                <button class="carousel-arrow next" aria-label="Siguiente proyecto" onclick="window.scrollCarousel('projectsGrid', 1)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -591,7 +606,7 @@
                     <div class="pipeline-beam"></div>
                 </div>
 
-                <div class="process-cards-horizontal">
+                <div class="process-cards-horizontal" id="processCardsHorizontal">
                     <!-- Paso 01 -->
                     <div class="process-step-card" data-step="1">
                         <div class="process-node-wrap">
@@ -687,6 +702,22 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Mobile Carousel Controls for Proceso -->
+                <div class="carousel-controls mobile-only" id="processCarouselControls">
+                    <button class="carousel-arrow prev" aria-label="Paso anterior" onclick="window.scrollCarousel('processCardsHorizontal', -1)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <div class="carousel-dots" id="processDots">
+                        <span class="carousel-dot active" onclick="window.goToCarouselSlide('processCardsHorizontal', 0)"></span>
+                        <span class="carousel-dot" onclick="window.goToCarouselSlide('processCardsHorizontal', 1)"></span>
+                        <span class="carousel-dot" onclick="window.goToCarouselSlide('processCardsHorizontal', 2)"></span>
+                        <span class="carousel-dot" onclick="window.goToCarouselSlide('processCardsHorizontal', 3)"></span>
+                    </div>
+                    <button class="carousel-arrow next" aria-label="Siguiente paso" onclick="window.scrollCarousel('processCardsHorizontal', 1)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
                 </div>
             </div>
 
@@ -947,6 +978,6 @@
     </script>
     
     <!-- Scripts -->
-    <script src="js/animations.js?v=mobile_v2"></script>
+    <script src="js/animations.js?v=mobile_v4"></script>
 </body>
 </html>
