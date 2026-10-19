@@ -53,33 +53,52 @@ window.addEventListener('load', () => {
     }
 });
 
-// Mobile Menu Toggle (Robusto para touch y click)
+// Mobile Menu Controller
+window.toggleMobileMenu = function(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (menuToggle && mobileMenu) {
+        const isOpen = menuToggle.classList.toggle('active');
+        if (isOpen) {
+            mobileMenu.classList.add('active');
+        } else {
+            mobileMenu.classList.remove('active');
+        }
+    }
+};
+
+window.closeMobileMenu = function() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (menuToggle && mobileMenu) {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+    }
+};
+
 function initMobileMenu() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
 
     if (menuToggle && mobileMenu) {
-        // Toggle click & touch
-        menuToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            menuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
+        // Enlazar click handler único solo si no tiene onclick inline
+        if (!menuToggle.hasAttribute('onclick')) {
+            menuToggle.addEventListener('click', window.toggleMobileMenu);
+        }
 
         // Cerrar menú al tocar un enlace dentro de él
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
+            link.addEventListener('click', window.closeMobileMenu);
         });
 
         // Cerrar menú al hacer click o tap fuera
         document.addEventListener('click', (e) => {
             if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-                menuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
+                window.closeMobileMenu();
             }
         });
     }
