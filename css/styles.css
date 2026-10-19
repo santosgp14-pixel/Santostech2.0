@@ -4,10 +4,19 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 86px;
+}
+
 html, body {
     overflow-x: hidden;
     max-width: 100%;
     width: 100%;
+}
+
+section[id], [id] {
+    scroll-margin-top: 86px;
 }
 
 :root {
@@ -49,6 +58,7 @@ html, body {
 }
 
 body {
+    padding-top: 74px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', sans-serif;
     line-height: 1.7;
     color: var(--text-primary);
@@ -72,16 +82,19 @@ body {
     padding: 0 32px;
 }
 
-/* Header */
+/* Header Fijo Persistente */
 header {
-    padding: 20px 0;
+    padding: 16px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(7, 9, 14, 0.78);
+    background: rgba(7, 9, 14, 0.88);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 100;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
     transition: var(--transition-smooth);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 
                 inset 0 -1px 0 rgba(59, 130, 246, 0.1);
@@ -3755,7 +3768,7 @@ footer::before {
     min-height: 92vh;
     display: flex;
     align-items: center;
-    padding: 140px 0 100px;
+    padding: 70px 0 90px;
     overflow: hidden;
     background: #07090e;
 }
@@ -3763,8 +3776,8 @@ footer::before {
 .hero-bg-gradient {
     position: absolute;
     top: -50%;
-    left: -20%;
-    width: 140%;
+    left: -50%;
+    width: 200%;
     height: 200%;
     background: radial-gradient(ellipse at 50% 30%, rgba(59, 130, 246, 0.16) 0%, transparent 60%),
                 radial-gradient(ellipse at 85% 65%, rgba(8, 145, 178, 0.14) 0%, transparent 50%),
@@ -7213,21 +7226,35 @@ html {
     .mobile-only {
         display: flex !important;
     }
+    html {
+        scroll-padding-top: 68px !important;
+    }
+
+    section[id], [id] {
+        scroll-margin-top: 68px !important;
+    }
+
     /* Prevención global de desborde horizontal en mobile */
     html, body {
         overflow-x: hidden !important;
         width: 100% !important;
         max-width: 100vw !important;
         position: relative !important;
+        padding-top: 62px !important;
     }
 
-    /* 1. Header & Mobile Menu */
+    /* 1. Header Fijo Persistente en Mobile */
     header {
-        padding: 14px 0 !important;
-        position: sticky !important;
+        position: fixed !important;
         top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: 12px 0 !important;
         z-index: 1000 !important;
         width: 100% !important;
+        background: rgba(7, 9, 14, 0.94) !important;
+        backdrop-filter: blur(24px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
     }
 
     .header-content {
@@ -7365,8 +7392,19 @@ html {
     }
 
     .hero-bg-gradient {
-        max-width: 100vw !important;
-        overflow: hidden !important;
+        position: absolute !important;
+        inset: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        transform: none !important;
+        animation: none !important;
+        background: radial-gradient(ellipse at 50% 25%, rgba(59, 130, 246, 0.16) 0%, transparent 70%),
+                    radial-gradient(ellipse at 85% 65%, rgba(8, 145, 178, 0.13) 0%, transparent 60%) !important;
     }
 
     .hero-content-grid {
@@ -7582,12 +7620,14 @@ html {
         overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
         -webkit-overflow-scrolling: touch !important;
-        scroll-behavior: smooth !important;
+        overscroll-behavior-x: contain !important;
+        touch-action: pan-x pan-y !important;
         gap: 16px !important;
         padding: 10px 4px 14px !important;
         margin: 16px 0 0 !important;
         width: 100% !important;
         scrollbar-width: none !important;
+        cursor: grab !important;
     }
 
     .projects-grid::-webkit-scrollbar {
@@ -7599,12 +7639,14 @@ html {
         max-width: calc(100% - 28px) !important;
         min-width: 280px !important;
         scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
+        scroll-snap-stop: normal !important;
         box-sizing: border-box !important;
         margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
     }
 
     /* Carrusel 2: Flujo de Trabajo Paso a Paso */
@@ -7623,12 +7665,14 @@ html {
         overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
         -webkit-overflow-scrolling: touch !important;
-        scroll-behavior: smooth !important;
+        overscroll-behavior-x: contain !important;
+        touch-action: pan-x pan-y !important;
         gap: 16px !important;
         padding: 10px 4px 14px !important;
         margin: 0 !important;
         width: 100% !important;
         scrollbar-width: none !important;
+        cursor: grab !important;
     }
 
     .process-cards-horizontal::-webkit-scrollbar {
@@ -7640,9 +7684,11 @@ html {
         max-width: calc(100% - 28px) !important;
         min-width: 280px !important;
         scroll-snap-align: center !important;
-        scroll-snap-stop: always !important;
+        scroll-snap-stop: normal !important;
         box-sizing: border-box !important;
         margin: 0 !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
     }
 
     /* Controles de Carrusel (Flechas y Puntos Indicadores) */

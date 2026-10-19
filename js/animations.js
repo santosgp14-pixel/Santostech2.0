@@ -658,11 +658,12 @@ function initCarousels() {
     pairs.forEach(({ id, dotsId }) => {
         const container = document.getElementById(id);
         const dotsContainer = document.getElementById(dotsId);
-        if (!container || !dotsContainer) return;
+        if (!container) return;
 
-        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        const dots = dotsContainer ? dotsContainer.querySelectorAll('.carousel-dot') : [];
         const cards = Array.from(container.children);
 
+        // 1. Sincronización continua de indicadores de puntos
         let isTicking = false;
         container.addEventListener('scroll', () => {
             if (!isTicking) {
@@ -690,6 +691,90 @@ function initCarousels() {
                 isTicking = true;
             }
         }, { passive: true });
+
+        // 2. Gesto táctil optimizado para deslizamiento con el dedo (Touch Swipe)
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchStartTime = 0;
+        let isHorizontalSwipe = false;
+
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+                isHorizontalSwipe = false;
+            }
+        }, { passive: true });
+
+        container.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                const diffX = Math.abs(e.touches[0].clientX - touchStartX);
+                const diffY = Math.abs(e.touches[0].clientY - touchStartY);
+                if (diffX > diffY && diffX > 10) {
+                    isHorizontalSwipe = true;
+                }
+            }
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            if (isHorizontalSwipe && e.changedTouches.length === 1) {
+                const diffX = e.changedTouches[0].clientX - touchStartX;
+                const elapsed = Date.now() - touchStartTime;
+                // Si el gesto fue un barrido rápido (> 30px en < 450ms)
+                if (Math.abs(diffX) > 30 && elapsed < 450) {
+                    if (diffX < 0) {
+                        window.scrollCarousel(id, 1);
+                    } else {
+                        window.scrollCarousel(id, -1);
+                    }
+                }
+            }
+        }, { passive: true });
+
+        // 3. Soporte para arrastrar con mouse / cursor (Drag and Drop fluido)
+        let isMouseDown = false;
+        let mouseStartX = 0;
+        let mouseScrollLeft = 0;
+        let hasMouseDragged = false;
+
+        container.addEventListener('mousedown', (e) => {
+            // Ignorar click derecho
+            if (e.button !== 0) return;
+            isMouseDown = true;
+            hasMouseDragged = false;
+            mouseStartX = e.pageX - container.offsetLeft;
+            mouseScrollLeft = container.scrollLeft;
+            container.style.cursor = 'grabbing';
+            container.style.scrollBehavior = 'auto';
+            container.style.scrollSnapType = 'none';
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isMouseDown) return;
+            isMouseDown = false;
+            container.style.cursor = 'grab';
+            container.style.scrollBehavior = 'smooth';
+            container.style.scrollSnapType = 'x mandatory';
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - mouseStartX) * 1.3;
+            if (Math.abs(walk) > 4) hasMouseDragged = true;
+            container.scrollLeft = mouseScrollLeft - walk;
+        });
+
+        // Prevenir clicks accidentales en enlaces durante un arrastre
+        container.addEventListener('click', (e) => {
+            if (hasMouseDragged) {
+                e.preventDefault();
+                e.stopPropagation();
+                hasMouseDragged = false;
+            }
+        }, true);
     });
 }
 
