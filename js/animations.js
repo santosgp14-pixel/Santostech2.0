@@ -53,23 +53,42 @@ window.addEventListener('load', () => {
     }
 });
 
-// Mobile Menu Toggle
-const menuToggle = document.querySelector('.mobile-menu-toggle');
-const mobileMenu = document.querySelector('.mobile-menu');
+// Mobile Menu Toggle (Robusto para touch y click)
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
-if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-    });
-    
-    // Cerrar menú al hacer click fuera
-    document.addEventListener('click', (e) => {
-        if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-            menuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-        }
-    });
+    if (menuToggle && mobileMenu) {
+        // Toggle click & touch
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al tocar un enlace dentro de él
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Cerrar menú al hacer click o tap fuera
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+} else {
+    initMobileMenu();
 }
 
 // Animación al hacer scroll con Intersection Observer
@@ -588,4 +607,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
+});
