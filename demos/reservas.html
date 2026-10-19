@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de reservas con calendario interactivo y sincronización de horarios disponibles en tiempo real. Demostración creada por SantOps.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://santops.com/demos/reservas.html">
+    <meta name="theme-color" content="#07090e">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://santops.com/demos/reservas.html">
+    <meta property="og:site_name" content="SantOps">
+    <meta property="og:title" content="Gestor de Turnos & Agenda Web — SantOps Demo">
+    <meta property="og:description" content="Sistema de reservas con calendario interactivo y sincronización de horarios disponibles en tiempo real. Demostración creada por SantOps.">
+    <meta property="og:image" content="https://santops.com/media/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gestor de Turnos & Agenda Web — SantOps Demo">
+    <meta name="twitter:description" content="Sistema de reservas con calendario interactivo y sincronización de horarios disponibles en tiempo real. Demostración creada por SantOps.">
+    <meta name="twitter:image" content="https://santops.com/media/og-image.jpg">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="../media/logo-icon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon-32x32.png">
+    <title>Sistema de Reservas & Agenda — SantOps Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #07090e;
+            --bg-surface: #0d1320;
+            --bg-card: rgba(19, 29, 49, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(6, 182, 212, 0.35);
+            --cyan: #06b6d4;
+            --blue: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
+            --font: 'Plus Jakarta Sans', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-base);
+            color: var(--text-main);
+            padding: 24px;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .tool-container {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .tool-title-group h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            background: rgba(6, 182, 212, 0.12);
+            color: var(--cyan);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            border-radius: 6px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .tool-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .view-mode-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .view-tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-tab-btn.active {
+            background: var(--cyan);
+            color: #07090e;
+            font-weight: 700;
+        }
+
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 860px) {
+            .booking-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .booking-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .card-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--cyan);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Services Grid */
+        .services-picker {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .services-picker {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-pill {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .service-pill:hover {
+            border-color: var(--border-hover);
+        }
+
+        .service-pill.active {
+            background: rgba(6, 182, 212, 0.08);
+            border-color: var(--cyan);
+        }
+
+        .pill-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .pill-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Dates Row */
+        .dates-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+        }
+
+        .date-chip {
+            flex: 1;
+            min-width: 70px;
+            text-align: center;
+            padding: 12px 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .date-chip:hover {
+            border-color: var(--border-hover);
+        }
+
+        .date-chip.active {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .date-day-name {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .date-day-num {
+            font-size: 1.25rem;
+            font-weight: 800;
+            font-family: var(--mono);
+        }
+
+        /* Slots Grid */
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 540px) {
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .slot-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 4px;
+            font-size: 0.85rem;
+            font-family: var(--mono);
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .slot-btn:hover:not(.disabled) {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        .slot-btn.active {
+            background: var(--cyan);
+            color: #07090e;
+            border-color: var(--cyan);
+            font-weight: 700;
+        }
+
+        .slot-btn.disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            text-decoration: line-through;
+            border-color: rgba(255, 255, 255, 0.03);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Confirmation side */
+        .confirm-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 24px;
+        }
+
+        .confirm-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .booking-details-box {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+
+        .detail-item {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+        }
+
+        .detail-val {
+            font-weight: 700;
+            color: var(--text-main);
+            font-family: var(--mono);
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--cyan);
+            background: rgba(6, 182, 212, 0.04);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.25);
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Success screen modal inside tool */
+        .success-overlay {
+            display: none;
+            background: rgba(7, 9, 14, 0.95);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 30px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+            z-index: 10;
+        }
+
+        .success-overlay.show {
+            display: flex;
+        }
+
+        .success-badge-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid #10b981;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .new-booking-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 16px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .new-booking-btn:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        /* Admin view screen */
+        .admin-view-panel {
+            display: none;
+        }
+
+        .admin-view-panel.active {
+            display: block;
+        }
+
+        .client-view-panel.hidden {
+            display: none;
+        }
+
+        .agenda-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        .agenda-table th {
+            text-align: left;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+        }
+
+        .agenda-table td {
+            padding: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-tag.confirmed {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-tag.pending {
+            background: rgba(234, 179, 8, 0.15);
+            color: #eab308;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .action-sm-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .action-sm-btn:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tool-container">
+        <!-- Top header -->
+        <header class="tool-header">
+            <div class="tool-title-group">
+                <h2>
+                    Gestor de Turnos & Agenda Web
+                    <span class="tool-badge">Demo Autogestionable</span>
+                </h2>
+                <p class="tool-subtitle">Reservas sincronizadas en tiempo real con panel de control para el negocio.</p>
+            </div>
+
+            <div class="view-mode-tabs">
+                <button class="view-tab-btn active" id="clientTabBtn" onclick="switchView('client')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Vista Cliente
+                </button>
+                <button class="view-tab-btn" id="adminTabBtn" onclick="switchView('admin')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    Panel del Negocio
+                </button>
+            </div>
+        </header>
+
+        <!-- CLIENT VIEW -->
+        <div class="client-view-panel" id="clientView">
+            <div class="booking-layout">
+                <!-- Left: Booking Flow -->
+                <div class="booking-main">
+                    <!-- Step 1: Service -->
+                    <div class="booking-card">
+                        <div class="card-label">1. Selecciona la especialidad o servicio</div>
+                        <div class="services-picker">
+                            <div class="service-pill active" onclick="selectService(this, 'Auditoría Técnica Digital', '30 min', '$0')">
+                                <div class="pill-name">Diagnóstico Inicial</div>
+                                <div class="pill-meta"><span>30 min</span><span style="color:var(--cyan); font-weight:700;">Gratis</span></div>
+                            </div>
+                            <div class="service-pill" onclick="selectService(this, 'Planificación de Plataforma', '60 min', '$45')">
+                                <div class="pill-name">Plan de Plataforma</div>
+                                <div class="pill-meta"><span>60 min</span><span>$45 USD</span></div>
+                            </div>
+                            <div class="service-pill" onclick="selectService(this, 'Rescate Urgente de Código', '45 min', '$60')">
+                                <div class="pill-name">Revisión de Código</div>
+                                <div class="pill-meta"><span>45 min</span><span>$60 USD</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Date -->
+                    <div class="booking-card">
+                        <div class="card-label">2. Fecha de atención</div>
+                        <div class="dates-scroll">
+                            <div class="date-chip active" onclick="selectDate(this, 'Lun 20 Oct')">
+                                <div class="date-day-name">Lun</div>
+                                <div class="date-day-num">20</div>
+                            </div>
+                            <div class="date-chip" onclick="selectDate(this, 'Mar 21 Oct')">
+                                <div class="date-day-name">Mar</div>
+                                <div class="date-day-num">21</div>
+                            </div>
+                            <div class="date-chip" onclick="selectDate(this, 'Mié 22 Oct')">
+                                <div class="date-day-name">Mié</div>
+                                <div class="date-day-num">22</div>
+                            </div>
+                            <div class="date-chip" onclick="selectDate(this, 'Jue 23 Oct')">
+                                <div class="date-day-name">Jue</div>
+                                <div class="date-day-num">23</div>
+                            </div>
+                            <div class="date-chip" onclick="selectDate(this, 'Vie 24 Oct')">
+                                <div class="date-day-name">Vie</div>
+                                <div class="date-day-num">24</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Slots -->
+                    <div class="booking-card">
+                        <div class="card-label">3. Horarios disponibles</div>
+                        <div class="slots-grid">
+                            <div class="slot-btn" onclick="selectSlot(this, '09:00 AM')">09:00 AM</div>
+                            <div class="slot-btn disabled" title="Horario reservado">10:00 AM</div>
+                            <div class="slot-btn active" onclick="selectSlot(this, '11:30 AM')">11:30 AM</div>
+                            <div class="slot-btn" onclick="selectSlot(this, '02:00 PM')">02:00 PM</div>
+                            <div class="slot-btn disabled" title="Horario reservado">03:30 PM</div>
+                            <div class="slot-btn" onclick="selectSlot(this, '04:30 PM')">04:30 PM</div>
+                            <div class="slot-btn" onclick="selectSlot(this, '05:30 PM')">05:30 PM</div>
+                            <div class="slot-btn" onclick="selectSlot(this, '06:30 PM')">06:30 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Confirmation & Details -->
+                <div class="booking-side">
+                    <div class="confirm-card" style="position: relative;">
+                        <h3 class="confirm-title">Resumen de la Cita</h3>
+
+                        <div class="booking-details-box">
+                            <div class="detail-item">
+                                <span class="detail-label">Servicio:</span>
+                                <span class="detail-val" id="summaryService">Diagnóstico Inicial</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Fecha:</span>
+                                <span class="detail-val" id="summaryDate">Lun 20 Oct</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Horario:</span>
+                                <span class="detail-val" id="summaryTime" style="color:var(--cyan);">11:30 AM</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Modalidad:</span>
+                                <span class="detail-val">Videollamada / Online</span>
+                            </div>
+                        </div>
+
+                        <form id="bookingForm" onsubmit="confirmBooking(event)">
+                            <div class="form-group">
+                                <label>Nombre del solicitante *</label>
+                                <input type="text" id="bName" required placeholder="Ej: Carolina Méndez">
+                            </div>
+
+                            <div class="form-group">
+                                <label>WhatsApp / Teléfono *</label>
+                                <input type="tel" id="bPhone" required placeholder="+54 11 2345-6789">
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                Confirmar Turno al Instante
+                            </button>
+                        </form>
+
+                        <!-- Success Screen -->
+                        <div class="success-overlay" id="successOverlay">
+                            <div class="success-badge-icon">✓</div>
+                            <h3 style="font-size: 1.25rem; font-weight:700; margin-bottom: 6px;">¡Turno Agendado con Éxito!</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">Hemos generado el registro y notificado la reserva.</p>
+                            <div style="background: rgba(255,255,255,0.04); border: 1px dashed var(--border); padding: 12px 18px; border-radius: 8px; font-family: var(--mono); font-size: 0.85rem;">
+                                Código de Reserva: <strong style="color:var(--cyan);" id="bookingCode">#ST-9842</strong>
+                            </div>
+                            <button class="new-booking-btn" onclick="resetBooking()">Agendar otra cita</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN VIEW -->
+        <div class="admin-view-panel" id="adminView">
+            <div class="booking-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <h3 style="font-size: 1.15rem; font-weight:700;">Agenda de Turnos del Negocio</h3>
+                        <p style="font-size: 0.82rem; color: var(--text-muted);">Así visualiza el administrador las citas sincronizadas en vivo.</p>
+                    </div>
+                    <button class="action-sm-btn" style="border-color: var(--cyan); color: var(--cyan);" onclick="addSimulatedAppointment()">
+                        + Simular Nueva Reserva Entrante
+                    </button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="agenda-table">
+                        <thead>
+                            <tr>
+                                <th>Hora</th>
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Contacto</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="agendaBody">
+                            <tr>
+                                <td style="font-family: var(--mono); font-weight: 700; color: var(--cyan);">09:00 AM</td>
+                                <td><strong>Marcos Varela</strong></td>
+                                <td>Diagnóstico Inicial</td>
+                                <td>+54 11 9841-2311</td>
+                                <td><span class="status-tag confirmed">Confirmado</span></td>
+                                <td><button class="action-sm-btn" onclick="cancelRow(this)">Liberar</button></td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: var(--mono); font-weight: 700; color: var(--cyan);">11:30 AM</td>
+                                <td><strong id="liveBookingClient">Carolina Méndez</strong></td>
+                                <td>Planificación de Plataforma</td>
+                                <td>+54 11 2345-6789</td>
+                                <td><span class="status-tag confirmed">Confirmado</span></td>
+                                <td><button class="action-sm-btn" onclick="cancelRow(this)">Liberar</button></td>
+                            </tr>
+                            <tr>
+                                <td style="font-family: var(--mono); font-weight: 700; color: var(--cyan);">03:30 PM</td>
+                                <td><strong>Estudio Jurídico Nova</strong></td>
+                                <td>Revisión de Código</td>
+                                <td>+54 11 4112-9800</td>
+                                <td><span class="status-tag pending">Pendiente</span></td>
+                                <td><button class="action-sm-btn" onclick="cancelRow(this)">Liberar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentServiceName = 'Diagnóstico Inicial';
+        let currentDate = 'Lun 20 Oct';
+        let currentTime = '11:30 AM';
+
+        function selectService(el, name, duration, price) {
+            document.querySelectorAll('.service-pill').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            currentServiceName = name;
+            document.getElementById('summaryService').textContent = name;
+        }
+
+        function selectDate(el, dateStr) {
+            document.querySelectorAll('.date-chip').forEach(d => d.classList.remove('active'));
+            el.classList.add('active');
+            currentDate = dateStr;
+            document.getElementById('summaryDate').textContent = dateStr;
+        }
+
+        function selectSlot(el, timeStr) {
+            if (el.classList.contains('disabled')) return;
+            document.querySelectorAll('.slot-btn').forEach(s => s.classList.remove('active'));
+            el.classList.add('active');
+            currentTime = timeStr;
+            document.getElementById('summaryTime').textContent = timeStr;
+        }
+
+        function confirmBooking(e) {
+            e.preventDefault();
+            const name = document.getElementById('bName').value.trim();
+            const phone = document.getElementById('bPhone').value.trim();
+            if (!name || !phone) return;
+
+            const randomCode = '#ST-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('bookingCode').textContent = randomCode;
+            document.getElementById('successOverlay').classList.add('show');
+
+            // Add to admin table
+            const tbody = document.getElementById('agendaBody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td style="font-family: var(--mono); font-weight: 700; color: var(--cyan);">${currentTime}</td>
+                <td><strong>${name}</strong></td>
+                <td>${currentServiceName}</td>
+                <td>${phone}</td>
+                <td><span class="status-tag confirmed">Confirmado</span></td>
+                <td><button class="action-sm-btn" onclick="cancelRow(this)">Liberar</button></td>
+            `;
+            tbody.prepend(row);
+        }
+
+        function resetBooking() {
+            document.getElementById('successOverlay').classList.remove('show');
+            document.getElementById('bName').value = '';
+            document.getElementById('bPhone').value = '';
+        }
+
+        function switchView(mode) {
+            if (mode === 'admin') {
+                document.getElementById('clientView').classList.add('hidden');
+                document.getElementById('adminView').classList.add('active');
+                document.getElementById('clientTabBtn').classList.remove('active');
+                document.getElementById('adminTabBtn').classList.add('active');
+            } else {
+                document.getElementById('clientView').classList.remove('hidden');
+                document.getElementById('adminView').classList.remove('active');
+                document.getElementById('clientTabBtn').classList.add('active');
+                document.getElementById('adminTabBtn').classList.remove('active');
+            }
+        }
+
+        function cancelRow(btn) {
+            const tr = btn.closest('tr');
+            tr.style.opacity = '0.3';
+            tr.style.textDecoration = 'line-through';
+            btn.textContent = 'Cancelado';
+            btn.disabled = true;
+        }
+
+        function addSimulatedAppointment() {
+            const names = ['Agencia Creativa Zenith', 'Dr. Roberto Salas', 'Valentina Ruiz'];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const tbody = document.getElementById('agendaBody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td style="font-family: var(--mono); font-weight: 700; color: var(--cyan);">04:00 PM</td>
+                <td><strong>${randomName}</strong></td>
+                <td>Planificación de Plataforma</td>
+                <td>+54 11 5555-1234</td>
+                <td><span class="status-tag confirmed">Confirmado</span></td>
+                <td><button class="action-sm-btn" onclick="cancelRow(this)">Liberar</button></td>
+            `;
+            tbody.prepend(row);
+        }
+    </script>
+</body>
+</html>

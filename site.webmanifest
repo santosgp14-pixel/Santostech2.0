@@ -1,29 +1,34 @@
 {
-    "name": "SantOps - Soluciones Digitales",
+    "name": "SantOps - Herramientas Web & Plataformas Autogestionables",
     "short_name": "SantOps",
-    "description": "Desarrollo web, automatización de procesos y optimización digital profesional en Argentina",
+    "description": "Estudio boutique de software y plataformas web autogestionables a medida con 30 días de garantía técnica.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#0891b2",
+    "background_color": "#07090e",
+    "theme_color": "#07090e",
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "/media/android-chrome-192x192.png",
-            "sizes": "192x192",
+            "src": "/media/logo-icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "/media/favicon-32x32.png",
+            "sizes": "32x32",
             "type": "image/png"
         },
         {
-            "src": "/media/android-chrome-512x512.png",
-            "sizes": "512x512",
+            "src": "/media/apple-touch-icon.png",
+            "sizes": "180x180",
             "type": "image/png"
         }
     ],
     "categories": [
         "business",
         "productivity",
-        "utilities"
+        "developer tools"
     ],
-    "lang": "es-AR",
+    "lang": "es",
     "dir": "ltr"
 }

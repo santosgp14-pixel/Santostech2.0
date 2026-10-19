@@ -115,7 +115,7 @@
             </div>
 
             <h1 class="gate-title">Portal de Soporte</h1>
-            <p class="gate-subtitle">Ingresá tu código de acceso para abrir un ticket de soporte. Si no tenés tu código, <a href="contacto.html">contactate con nosotros</a>.</p>
+            <p class="gate-subtitle">Ingresa tu código de acceso para abrir un ticket de soporte. Si no tienes tu código, <a href="contacto.html">contáctanos</a>.</p>
 
             <div class="gate-form-wrap">
                 <div class="gate-input-group">
@@ -136,7 +136,7 @@
                     </div>
                     <p id="gateError" class="gate-error" style="display:none;">
                         <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 3.5a.75.75 0 1 1 1.5 0v3.25a.75.75 0 1 1-1.5 0V4.5zm.75 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
-                        Código incorrecto. Verificá e intentá de nuevo.
+                        Código incorrecto. Verifica e intenta de nuevo.
                     </p>
                 </div>
                 <button id="gateSubmit" class="gate-btn" onclick="checkClientCode()">
@@ -190,7 +190,7 @@
                         <span id="clientCodeDisplay">Cliente</span>
                     </div>
                     <h1 class="ticket-hero-title">¿En qué podemos ayudarte?</h1>
-                    <p class="ticket-hero-subtitle">Completá el formulario con el mayor detalle posible. Te asignamos un número de ticket y respondemos en menos de 24 horas.</p>
+                    <p class="ticket-hero-subtitle">Completa el formulario con el mayor detalle posible. Te asignamos un número de ticket y respondemos en menos de 24 horas.</p>
 
                     <!-- Stepper -->
                     <div class="ticket-stepper">
@@ -300,7 +300,7 @@
                                     </label>
                                     <div class="ticket-select-wrap">
                                         <select id="t_category" name="category" class="ticket-select" required onchange="updateCategoryIcon()">
-                                            <option value="" disabled selected>Seleccioná una categoría</option>
+                                            <option value="" disabled selected>Selecciona una categoría</option>
                                             <option value="bug">🐛 Bug / Error en el sistema</option>
                                             <option value="soporte">🔧 Soporte técnico</option>
                                             <option value="funcionalidad">💡 Nueva funcionalidad</option>
@@ -318,7 +318,7 @@
                                     </label>
                                     <div class="ticket-select-wrap">
                                         <select id="t_priority" name="priority" class="ticket-select" required onchange="updatePriorityBadge()">
-                                            <option value="" disabled selected>Seleccioná prioridad</option>
+                                            <option value="" disabled selected>Selecciona la prioridad</option>
                                             <option value="baja">🟢 Baja — Cuando puedas</option>
                                             <option value="media">🟡 Media — Esta semana</option>
                                             <option value="alta">🔴 Alta — Hoy</option>
@@ -354,7 +354,7 @@
                                     <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 3h12v10H2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 6h6M5 9h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                                     Descripción detallada <span class="req">*</span>
                                 </label>
-                                <textarea id="t_description" name="description" class="ticket-textarea" rows="6" required placeholder="Describí el problema con el mayor detalle posible:&#10;&#10;• ¿Qué estabas haciendo cuando ocurrió?&#10;• ¿Qué esperabas que pasara?&#10;• ¿Qué pasó en realidad?&#10;• ¿Hay algún mensaje de error visible?"></textarea>
+                                <textarea id="t_description" name="description" class="ticket-textarea" rows="6" required placeholder="Describe el problema con el mayor detalle posible:&#10;&#10;• ¿Qué estabas haciendo cuando ocurrió?&#10;• ¿Qué esperabas que pasara?&#10;• ¿Qué pasó en realidad?&#10;• ¿Hay algún mensaje de error visible?"></textarea>
                                 <span class="field-error" id="err_description"></span>
                             </div>
 
@@ -415,7 +415,7 @@
                                 <div class="next-step">
                                     <div class="next-step-icon">📧</div>
                                     <div>
-                                        <strong>Revisá tu email</strong>
+                                        <strong>Revisa tu correo</strong>
                                         <span>Enviamos la confirmación con el detalle del ticket.</span>
                                     </div>
                                 </div>
@@ -452,7 +452,7 @@
                         <svg viewBox="0 0 48 48" fill="none" width="36" height="36"><circle cx="24" cy="24" r="20" fill="#ef4444" opacity="0.15"/><path d="M18 18l12 12m0-12L18 30" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/></svg>
                         <div>
                             <strong>Error al enviar el ticket</strong>
-                            <p>Por favor intentá de nuevo, o <a href="https://wa.me/541126730434">escribinos por WhatsApp</a>.</p>
+                            <p>Por favor intenta de nuevo, o <a href="https://wa.me/541126730434">contáctanos por WhatsApp</a>.</p>
                         </div>
                         <button onclick="document.getElementById('ticketError').style.display='none'">×</button>
                     </div>
@@ -487,13 +487,13 @@
                     <div class="sidebar-card sidebar-tip">
                         <div class="sidebar-card-icon">💡</div>
                         <h3>Tip para reportar mejor</h3>
-                        <p>Incluí capturas de pantalla en la descripción (link de imagen) o mencioná los pasos exactos para reproducir el problema. Esto acelera mucho la resolución.</p>
+                        <p>Incluye capturas de pantalla en la descripción (link de imagen) o menciona los pasos exactos para reproducir el problema. Esto acelera mucho la resolución.</p>
                     </div>
 
                     <div class="sidebar-card sidebar-contact">
                         <div class="sidebar-card-icon">💬</div>
                         <h3>¿Urgencia extrema?</h3>
-                        <p>Para temas críticos podés escribirnos directamente por WhatsApp.</p>
+                        <p>Para temas críticos puedes escribirnos directamente por WhatsApp.</p>
                         <a href="https://wa.me/541126730434?text=Hola!%20Tengo%20un%20problema%20urgente%20con%20mi%20proyecto." class="sidebar-wa-btn" target="_blank" rel="noopener">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                             Escribir por WhatsApp
@@ -527,7 +527,7 @@
                 <div class="footer-credits">
                     <span>Hecho por</span>
                     <img src="media/logo-santops.svg" alt="SantOps Logo" class="footer-logo">
-                    <span>y ❤️ en Argentina</span>
+                    <span>con excelencia y ❤️</span>
                 </div>
                 <a href="soporte.html" class="footer-soporte-link active">
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M6 6.5a2 2 0 1 1 2 2v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.5" r="0.75" fill="currentColor"/></svg>

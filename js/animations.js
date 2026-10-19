@@ -515,3 +515,77 @@ if (window.innerWidth > 1024) {
 }
 
 console.log('✨ Advanced interactions loaded!');
+
+// ==========================================================================
+// CONSOLA INTERACTIVA DEL ESTUDIO (STUDIO CONSOLE)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const consoleTabs = document.querySelectorAll('.console-tab');
+    const consoleViews = document.querySelectorAll('.console-view');
+    
+    if (consoleTabs.length > 0 && consoleViews.length > 0) {
+        consoleTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetViewId = tab.dataset.view;
+                
+                // Actualizar tabs activas
+                consoleTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Actualizar vistas activas
+                consoleViews.forEach(v => {
+                    v.classList.remove('active');
+                    if (v.id === targetViewId) {
+                        v.classList.add('active');
+                    }
+                });
+            });
+        });
+    }
+
+    // Simulación 01: Selección de turnos
+    const slotButtons = document.querySelectorAll('.sim-slot-btn');
+    const feedbackBox = document.querySelector('.sim-feedback-text');
+    
+    if (slotButtons.length > 0 && feedbackBox) {
+        slotButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                slotButtons.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                const time = btn.dataset.time || '10:00';
+                feedbackBox.textContent = `Turno seleccionado para las ${time}. Confirmación lista.`;
+            });
+        });
+    }
+
+    // Simulación 02: Catálogo autogestionable
+    const priceInput = document.querySelector('.sim-price-input');
+    const livePriceDisplay = document.querySelector('.sim-live-price');
+    const stockBadge = document.querySelector('.sim-badge-toggle');
+    
+    if (priceInput && livePriceDisplay) {
+        priceInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            livePriceDisplay.textContent = val ? `$${val}` : '$0';
+        });
+    }
+
+    if (stockBadge) {
+        stockBadge.addEventListener('click', () => {
+            const isAvailable = stockBadge.dataset.state === 'available';
+            if (isAvailable) {
+                stockBadge.dataset.state = 'paused';
+                stockBadge.textContent = 'Pausado';
+                stockBadge.style.color = '#fbbf24';
+                stockBadge.style.background = 'rgba(245, 158, 11, 0.15)';
+                stockBadge.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+            } else {
+                stockBadge.dataset.state = 'available';
+                stockBadge.textContent = 'Disponible';
+                stockBadge.style.color = '#34d399';
+                stockBadge.style.background = 'rgba(16, 185, 129, 0.15)';
+                stockBadge.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+            }
+        });
+    }
+});

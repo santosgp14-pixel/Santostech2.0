@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo interactivo con carrito de compras, editor de precios en vivo y despacho directo a WhatsApp. Demostración creada por SantOps.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://santops.com/demos/catalogo.html">
+    <meta name="theme-color" content="#07090e">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://santops.com/demos/catalogo.html">
+    <meta property="og:site_name" content="SantOps">
+    <meta property="og:title" content="Catálogo & Tomador de Pedidos — SantOps Demo">
+    <meta property="og:description" content="Catálogo interactivo con carrito de compras, editor de precios en vivo y despacho directo a WhatsApp. Demostración creada por SantOps.">
+    <meta property="og:image" content="https://santops.com/media/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Catálogo & Tomador de Pedidos — SantOps Demo">
+    <meta name="twitter:description" content="Catálogo interactivo con carrito de compras, editor de precios en vivo y despacho directo a WhatsApp. Demostración creada por SantOps.">
+    <meta name="twitter:image" content="https://santops.com/media/og-image.jpg">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="../media/logo-icon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon-32x32.png">
+    <title>Catálogo & Pedidos Autogestionable — SantOps Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #07090e;
+            --bg-surface: #0d1320;
+            --bg-card: rgba(19, 29, 49, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(6, 182, 212, 0.35);
+            --cyan: #06b6d4;
+            --blue: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
+            --font: 'Plus Jakarta Sans', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-base);
+            color: var(--text-main);
+            padding: 24px;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .tool-container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .tool-title-group h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            background: rgba(6, 182, 212, 0.12);
+            color: var(--cyan);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            border-radius: 6px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .tool-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .editor-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .editor-toggle-btn:hover {
+            border-color: var(--cyan);
+            background: rgba(6, 182, 212, 0.08);
+            color: var(--cyan);
+        }
+
+        .editor-toggle-btn.active {
+            background: #eab308;
+            color: #07090e;
+            border-color: #eab308;
+            font-weight: 700;
+        }
+
+        .catalog-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .catalog-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Categories Filter */
+        .category-filter {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .filter-chip {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-chip:hover {
+            border-color: var(--cyan);
+            color: var(--text-main);
+        }
+
+        .filter-chip.active {
+            background: var(--cyan);
+            color: #07090e;
+            border-color: var(--cyan);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width: 580px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .product-top {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .product-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .product-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 3px;
+        }
+
+        .product-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .product-price {
+            font-family: var(--mono);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .add-cart-btn {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            color: var(--cyan);
+            padding: 6px 12px;
+            border-radius: 7px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--cyan);
+            color: #07090e;
+        }
+
+        /* Inline Editor Inputs (shown in admin mode) */
+        .inline-editor {
+            display: none;
+            background: rgba(234, 179, 8, 0.08);
+            border: 1px dashed #eab308;
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 10px;
+            font-size: 0.78rem;
+        }
+
+        body.editor-mode .inline-editor {
+            display: block;
+        }
+
+        .inline-editor label {
+            display: block;
+            color: #fde047;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .inline-editor input {
+            width: 100%;
+            background: var(--bg-base);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+        }
+
+        /* Cart Side */
+        .cart-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            position: sticky;
+            top: 24px;
+        }
+
+        .cart-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-count {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--cyan);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .cart-items-list {
+            max-height: 280px;
+            overflow-y: auto;
+            margin-bottom: 18px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cart-item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .cart-item-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: var(--mono);
+        }
+
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .qty-btn:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            padding: 30px 10px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+
+        .cart-total-row .total-val {
+            color: var(--cyan);
+            font-family: var(--mono);
+        }
+
+        .whatsapp-order-btn {
+            width: 100%;
+            background: #10b981;
+            color: #07090e;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .whatsapp-order-btn:hover {
+            background: #34d399;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tool-container">
+        <!-- Header -->
+        <header class="tool-header">
+            <div class="tool-title-group">
+                <h2>
+                    Catálogo & Tomador de Pedidos
+                    <span class="tool-badge">Demo Autogestionable</span>
+                </h2>
+                <p class="tool-subtitle">Carro de pedidos para WhatsApp con editor de precios en vivo para el dueño.</p>
+            </div>
+
+            <button class="editor-toggle-btn" id="editorBtn" onclick="toggleEditorMode()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <span id="editorText">Activar Editor de Precios</span>
+            </button>
+        </header>
+
+        <div class="catalog-layout">
+            <!-- Left: Products -->
+            <div class="products-col">
+                <div class="category-filter">
+                    <button class="filter-chip active" onclick="filterCategory(this, 'all')">Todos los ítems</button>
+                    <button class="filter-chip" onclick="filterCategory(this, 'especiales')">Especialidades</button>
+                    <button class="filter-chip" onclick="filterCategory(this, 'bebidas')">Bebidas & Café</button>
+                    <button class="filter-chip" onclick="filterCategory(this, 'pasteleria')">Pastelería</button>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Product 1 -->
+                    <div class="product-card" data-cat="especiales">
+                        <div class="product-top">
+                            <div class="product-icon">☕</div>
+                            <div class="product-info">
+                                <h4>Café de Origen Colombia</h4>
+                                <p class="product-desc">Notas a caramelo y avellanas tostadas, extracción barista.</p>
+                            </div>
+                        </div>
+                        <div class="inline-editor">
+                            <label>Editar Precio (Dueño del local):</label>
+                            <input type="number" value="3.50" step="0.5" oninput="updateItemPrice(1, this.value)">
+                        </div>
+                        <div class="product-bottom">
+                            <span class="product-price" id="price-1">$3.50 USD</span>
+                            <button class="add-cart-btn" onclick="addToCart(1, 'Café de Origen Colombia', 3.50)">+ Agregar</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card" data-cat="especiales">
+                        <div class="product-top">
+                            <div class="product-icon">🥐</div>
+                            <div class="product-info">
+                                <h4>Croissant Almendras & Vainilla</h4>
+                                <p class="product-desc">Hojaldre artesanal francés relleno de crema y almendras fileteadas.</p>
+                            </div>
+                        </div>
+                        <div class="inline-editor">
+                            <label>Editar Precio (Dueño del local):</label>
+                            <input type="number" value="4.20" step="0.5" oninput="updateItemPrice(2, this.value)">
+                        </div>
+                        <div class="product-bottom">
+                            <span class="product-price" id="price-2">$4.20 USD</span>
+                            <button class="add-cart-btn" onclick="addToCart(2, 'Croissant Almendras', 4.20)">+ Agregar</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card" data-cat="bebidas">
+                        <div class="product-top">
+                            <div class="product-icon">🧊</div>
+                            <div class="product-info">
+                                <h4>Cold Brew Vainilla Silk</h4>
+                                <p class="product-desc">Maceración en frío por 18 horas con toque suave de vainilla bourbon.</p>
+                            </div>
+                        </div>
+                        <div class="inline-editor">
+                            <label>Editar Precio (Dueño del local):</label>
+                            <input type="number" value="4.80" step="0.5" oninput="updateItemPrice(3, this.value)">
+                        </div>
+                        <div class="product-bottom">
+                            <span class="product-price" id="price-3">$4.80 USD</span>
+                            <button class="add-cart-btn" onclick="addToCart(3, 'Cold Brew Vainilla', 4.80)">+ Agregar</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card" data-cat="pasteleria">
+                        <div class="product-top">
+                            <div class="product-icon">🍰</div>
+                            <div class="product-info">
+                                <h4>Cheesecake de Frutos Rojos</h4>
+                                <p class="product-desc">Base crujiente de galleta con confitura natural de frambuesas.</p>
+                            </div>
+                        </div>
+                        <div class="inline-editor">
+                            <label>Editar Precio (Dueño del local):</label>
+                            <input type="number" value="5.50" step="0.5" oninput="updateItemPrice(4, this.value)">
+                        </div>
+                        <div class="product-bottom">
+                            <span class="product-price" id="price-4">$5.50 USD</span>
+                            <button class="add-cart-btn" onclick="addToCart(4, 'Cheesecake Frutos Rojos', 5.50)">+ Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Live Cart -->
+            <div class="cart-col">
+                <div class="cart-card">
+                    <div class="cart-title">
+                        <span>Orden del Cliente</span>
+                        <span class="cart-count" id="cartCount">0 ítems</span>
+                    </div>
+
+                    <div class="cart-items-list" id="cartItemsList">
+                        <div class="empty-cart-msg">Tu pedido está vacío.<br>Agrega ítems del catálogo para probar el flujo.</div>
+                    </div>
+
+                    <div class="cart-total-row">
+                        <span>Total:</span>
+                        <span class="total-val" id="cartTotal">$0.00 USD</span>
+                    </div>
+
+                    <button class="whatsapp-order-btn" id="orderBtn" onclick="checkoutWhatsApp()" style="opacity: 0.5; pointer-events: none;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cart = {};
+        const prices = {
+            1: 3.50,
+            2: 4.20,
+            3: 4.80,
+            4: 5.50
+        };
+
+        function toggleEditorMode() {
+            document.body.classList.toggle('editor-mode');
+            const btn = document.getElementById('editorBtn');
+            const text = document.getElementById('editorText');
+            if (document.body.classList.contains('editor-mode')) {
+                btn.classList.add('active');
+                text.textContent = 'Modo Edición Activado';
+            } else {
+                btn.classList.remove('active');
+                text.textContent = 'Activar Editor de Precios';
+            }
+        }
+
+        function updateItemPrice(id, newPrice) {
+            const p = parseFloat(newPrice) || 0;
+            prices[id] = p;
+            document.getElementById(`price-${id}`).textContent = `$${p.toFixed(2)} USD`;
+            if (cart[id]) {
+                cart[id].price = p;
+                renderCart();
+            }
+        }
+
+        function addToCart(id, name, price) {
+            const actualPrice = prices[id] || price;
+            if (cart[id]) {
+                cart[id].qty += 1;
+            } else {
+                cart[id] = { name, price: actualPrice, qty: 1 };
+            }
+            renderCart();
+        }
+
+        function changeQty(id, delta) {
+            if (!cart[id]) return;
+            cart[id].qty += delta;
+            if (cart[id].qty <= 0) {
+                delete cart[id];
+            }
+            renderCart();
+        }
+
+        function renderCart() {
+            const list = document.getElementById('cartItemsList');
+            const keys = Object.keys(cart);
+            let total = 0;
+            let totalQty = 0;
+
+            if (keys.length === 0) {
+                list.innerHTML = '<div class="empty-cart-msg">Tu pedido está vacío.<br>Agrega ítems del catálogo para probar el flujo.</div>';
+                document.getElementById('cartTotal').textContent = '$0.00 USD';
+                document.getElementById('cartCount').textContent = '0 ítems';
+                document.getElementById('orderBtn').style.opacity = '0.5';
+                document.getElementById('orderBtn').style.pointerEvents = 'none';
+                return;
+            }
+
+            let html = '';
+            keys.forEach(id => {
+                const item = cart[id];
+                const sub = item.qty * item.price;
+                total += sub;
+                totalQty += item.qty;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-sub">$${item.price.toFixed(2)} x ${item.qty} = $${sub.toFixed(2)}</div>
+                        </div>
+                        <div class="cart-controls">
+                            <button class="qty-btn" onclick="changeQty(${id}, -1)">-</button>
+                            <span style="font-family: var(--mono); font-size:0.85rem; font-weight:700;">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${id}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            list.innerHTML = html;
+            document.getElementById('cartTotal').textContent = `$${total.toFixed(2)} USD`;
+            document.getElementById('cartCount').textContent = `${totalQty} ${totalQty === 1 ? 'ítem' : 'ítems'}`;
+            document.getElementById('orderBtn').style.opacity = '1';
+            document.getElementById('orderBtn').style.pointerEvents = 'auto';
+        }
+
+        function filterCategory(btn, cat) {
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function checkoutWhatsApp() {
+            const keys = Object.keys(cart);
+            if (keys.length === 0) return;
+
+            let itemsText = '';
+            let total = 0;
+            keys.forEach(id => {
+                const item = cart[id];
+                const sub = item.qty * item.price;
+                total += sub;
+                itemsText += `• ${item.qty}x ${item.name} ($${sub.toFixed(2)})\n`;
+            });
+
+            const text = encodeURIComponent(
+                `Hola! Estuve probando el catálogo autogestionable de SantOps.\n\n` +
+                `*Detalle de la orden simulada:*\n` +
+                `${itemsText}\n` +
+                `*Total:* $${total.toFixed(2)} USD\n\n` +
+                `Me gustaría implementar una herramienta similar para mi comercio.`
+            );
+            window.open(`https://wa.me/541126730434?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>

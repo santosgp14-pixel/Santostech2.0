@@ -6,12 +6,13 @@ Allow: /
 Allow: /css/
 Allow: /js/
 Allow: /media/
+Allow: /demos/
 
-# Bloquear archivos innecesarios
-Disallow: /site.webmanifest
+# Excluir área privada de clientes y archivos json internos
+Disallow: /soporte.html
 Disallow: /*.json$
 
-# Crawl-delay para bots específicos
+# Crawl-delay para bots principales
 User-agent: Googlebot
 Crawl-delay: 0
 

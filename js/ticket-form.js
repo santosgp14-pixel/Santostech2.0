@@ -40,7 +40,7 @@ function checkClientCode() {
     input.classList.remove('shake');
 
     if (!code) {
-        showGateError(input, errorEl, 'Ingresá tu código de cliente.');
+        showGateError(input, errorEl, 'Ingresa tu código de cliente.');
         return;
     }
 
@@ -56,7 +56,7 @@ function checkClientCode() {
             activeClientCode = code;
             unlockPortal(code);
         } else {
-            showGateError(input, errorEl, 'Código incorrecto. Verificá e intentá de nuevo.');
+            showGateError(input, errorEl, 'Código incorrecto. Verifica e intenta de nuevo.');
         }
     }, 600);
 }
@@ -207,7 +207,7 @@ function validateStep(step) {
             showFieldError('t_email', 'err_email', 'El email es obligatorio.');
             valid = false;
         } else if (!isValidEmail(email.value)) {
-            showFieldError('t_email', 'err_email', 'Ingresá un email válido.');
+            showFieldError('t_email', 'err_email', 'Ingresa un correo electrónico válido.');
             valid = false;
         } else {
             clearFieldError('t_email', 'err_email');
@@ -221,14 +221,14 @@ function validateStep(step) {
         const description = document.getElementById('t_description');
 
         if (!category.value) {
-            showFieldError('t_category', 'err_category', 'Seleccioná una categoría.');
+            showFieldError('t_category', 'err_category', 'Selecciona una categoría.');
             valid = false;
         } else {
             clearFieldError('t_category', 'err_category');
         }
 
         if (!priority.value) {
-            showFieldError('t_priority', 'err_priority', 'Seleccioná la prioridad.');
+            showFieldError('t_priority', 'err_priority', 'Selecciona la prioridad.');
             valid = false;
         } else {
             clearFieldError('t_priority', 'err_priority');
@@ -248,7 +248,7 @@ function validateStep(step) {
             showFieldError('t_description', 'err_description', 'La descripción es obligatoria.');
             valid = false;
         } else if (description.value.trim().length < 20) {
-            showFieldError('t_description', 'err_description', 'Por favor describí el problema con más detalle.');
+            showFieldError('t_description', 'err_description', 'Por favor describe el problema con más detalle.');
             valid = false;
         } else {
             clearFieldError('t_description', 'err_description');

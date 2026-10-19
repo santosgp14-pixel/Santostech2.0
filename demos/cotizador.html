@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora interactiva de tarifas y presupuestos en tiempo real para negocios. Demostración funcional creada por SantOps.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://santops.com/demos/cotizador.html">
+    <meta name="theme-color" content="#07090e">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://santops.com/demos/cotizador.html">
+    <meta property="og:site_name" content="SantOps">
+    <meta property="og:title" content="Cotizador Online Inteligente — SantOps Demo">
+    <meta property="og:description" content="Calculadora interactiva de tarifas y presupuestos en tiempo real para negocios. Demostración funcional creada por SantOps.">
+    <meta property="og:image" content="https://santops.com/media/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cotizador Online Inteligente — SantOps Demo">
+    <meta name="twitter:description" content="Calculadora interactiva de tarifas y presupuestos en tiempo real para negocios. Demostración funcional creada por SantOps.">
+    <meta name="twitter:image" content="https://santops.com/media/og-image.jpg">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="../media/logo-icon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon-32x32.png">
+    <title>Cotizador Inteligente — SantOps Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #07090e;
+            --bg-surface: #0d1320;
+            --bg-card: rgba(19, 29, 49, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(6, 182, 212, 0.35);
+            --cyan: #06b6d4;
+            --blue: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
+            --font: 'Plus Jakarta Sans', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-base);
+            color: var(--text-main);
+            padding: 24px;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .tool-container {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .tool-title-group h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            background: rgba(6, 182, 212, 0.12);
+            color: var(--cyan);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            border-radius: 6px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .tool-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .admin-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .admin-toggle-btn:hover {
+            border-color: var(--cyan);
+            background: rgba(6, 182, 212, 0.08);
+            color: var(--cyan);
+        }
+
+        .admin-toggle-btn.active {
+            background: var(--accent-gradient);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 860px) {
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .section-box-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--cyan);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Service Cards */
+        .service-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 580px) {
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            background: rgba(13, 19, 32, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .service-card.selected {
+            background: rgba(6, 182, 212, 0.08);
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+        }
+
+        .service-card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .service-card-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .service-card-price {
+            font-family: var(--mono);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        /* Add-ons list */
+        .addon-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .addon-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .addon-item.selected {
+            background: rgba(6, 182, 212, 0.06);
+            border-color: rgba(6, 182, 212, 0.35);
+        }
+
+        .addon-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .custom-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .addon-item.selected .custom-checkbox {
+            background: var(--cyan);
+            border-color: var(--cyan);
+        }
+
+        .addon-item.selected .custom-checkbox::after {
+            content: "✓";
+            color: #07090e;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .addon-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .addon-price {
+            font-family: var(--mono);
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--cyan);
+        }
+
+        /* Sliders */
+        .slider-group {
+            margin-bottom: 16px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .slider-value {
+            font-family: var(--mono);
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            outline: none;
+            accent-color: var(--cyan);
+            cursor: pointer;
+        }
+
+        /* Summary Panel (Sticky) */
+        .summary-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            position: sticky;
+            top: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .summary-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .breakdown-row.total-row {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .breakdown-row.total-row .total-amount {
+            color: var(--cyan);
+            font-family: var(--mono);
+            font-size: 1.6rem;
+        }
+
+        .delivery-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 18px 0;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+        }
+
+        .cta-btn {
+            width: 100%;
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(6, 182, 212, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(6, 182, 212, 0.45);
+        }
+
+        .reset-link {
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .reset-link:hover {
+            color: var(--cyan);
+        }
+
+        /* Admin drawer */
+        .admin-box {
+            display: none;
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px dashed var(--cyan);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .admin-box.open {
+            display: block;
+        }
+
+        .admin-header {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .admin-field label {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .admin-field input {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: var(--text-main);
+            font-family: var(--mono);
+            font-size: 0.88rem;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            border: 1px solid var(--cyan);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tool-container">
+        <!-- Top bar -->
+        <header class="tool-header">
+            <div class="tool-title-group">
+                <h2>
+                    Cotizador Online Inteligente
+                    <span class="tool-badge">Demo Autogestionable</span>
+                </h2>
+                <p class="tool-subtitle">Cálculo reactivo instantáneo para clientes con generación de propuesta y panel editable.</p>
+            </div>
+            <button class="admin-toggle-btn" id="adminToggle" onclick="toggleAdmin()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+                <span id="adminToggleText">Modo Dueño de Negocio</span>
+            </button>
+        </header>
+
+        <!-- Admin panel editable demo -->
+        <div class="admin-box" id="adminBox">
+            <div class="admin-header">
+                ⚙️ Panel del Propietario (Así modificas tus tarifas y descuentos sin tocar código):
+            </div>
+            <div class="admin-inputs">
+                <div class="admin-field">
+                    <label>Descuento promocional (%)</label>
+                    <input type="number" id="adminDiscount" value="10" min="0" max="50" oninput="updateCalculation()">
+                </div>
+                <div class="admin-field">
+                    <label>Recargo por entrega express (USD)</label>
+                    <input type="number" id="adminExpressFee" value="120" min="0" step="10" oninput="updateCalculation()">
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-grid">
+            <!-- Left: Options -->
+            <div class="options-col">
+                <!-- Step 1: Base Service -->
+                <div class="section-box">
+                    <div class="section-box-title">1. Selecciona el servicio base</div>
+                    <div class="service-options">
+                        <div class="service-card selected" onclick="selectService(this, 350, 5, 'Landing Page Comercial')">
+                            <div class="service-card-title">Landing Comercial</div>
+                            <p class="service-card-desc">Alta conversión, diseño responsive y conexión directa a WhatsApp.</p>
+                            <div class="service-card-price">$350 USD</div>
+                        </div>
+
+                        <div class="service-card" onclick="selectService(this, 650, 10, 'Web Autogestionable')">
+                            <div class="service-card-title">Web Autogestionable</div>
+                            <p class="service-card-desc">Catálogo o servicios editables por tu equipo sin programar.</p>
+                            <div class="service-card-price">$650 USD</div>
+                        </div>
+
+                        <div class="service-card" onclick="selectService(this, 1100, 18, 'Plataforma a Medida')">
+                            <div class="service-card-title">Plataforma Web a Medida</div>
+                            <p class="service-card-desc">Flujo personalizado, panel de clientes y lógica compleja.</p>
+                            <div class="service-card-price">$1,100 USD</div>
+                        </div>
+
+                        <div class="service-card" onclick="selectService(this, 420, 7, 'Rescate y Optimización')">
+                            <div class="service-card-title">Rescate de Proyecto</div>
+                            <p class="service-card-desc">Auditoría, corrección de errores y puesta a punto de proyecto en curso.</p>
+                            <div class="service-card-price">$420 USD</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Add-ons -->
+                <div class="section-box">
+                    <div class="section-box-title">2. Módulos & Complementos</div>
+                    <div class="addon-item selected" onclick="toggleAddon(this, 180, 2, 'Catálogo Interactivo con Filtros')">
+                        <div class="addon-left">
+                            <div class="custom-checkbox"></div>
+                            <div>
+                                <div class="addon-title">Catálogo Interactivo con Filtros</div>
+                            </div>
+                        </div>
+                        <div class="addon-price">+$180 USD</div>
+                    </div>
+
+                    <div class="addon-item" onclick="toggleAddon(this, 220, 3, 'Sistema de Reservas y Turnos')">
+                        <div class="addon-left">
+                            <div class="custom-checkbox"></div>
+                            <div>
+                                <div class="addon-title">Sistema de Reservas y Agenda</div>
+                            </div>
+                        </div>
+                        <div class="addon-price">+$220 USD</div>
+                    </div>
+
+                    <div class="addon-item" onclick="toggleAddon(this, 140, 2, 'Integración de Pasarela de Pago')">
+                        <div class="addon-left">
+                            <div class="custom-checkbox"></div>
+                            <div>
+                                <div class="addon-title">Integración de Pasarela de Pago</div>
+                            </div>
+                        </div>
+                        <div class="addon-price">+$140 USD</div>
+                    </div>
+
+                    <div class="addon-item" onclick="toggleAddon(this, 90, 0, 'Soporte y Garantía Extendida 60 días')">
+                        <div class="addon-left">
+                            <div class="custom-checkbox"></div>
+                            <div>
+                                <div class="addon-title">Garantía Extendida 60 días (30 ya incluidos)</div>
+                            </div>
+                        </div>
+                        <div class="addon-price">+$90 USD</div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Sliders -->
+                <div class="section-box">
+                    <div class="section-box-title">3. Parámetros del Proyecto</div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>Vistas o secciones requeridas:</span>
+                            <span class="slider-value" id="pagesValue">4 secciones</span>
+                        </div>
+                        <input type="range" id="pagesSlider" min="1" max="12" value="4" oninput="updatePages(this.value)">
+                    </div>
+
+                    <div class="slider-group" style="margin-top: 18px;">
+                        <div class="slider-header">
+                            <span>Velocidad de entrega:</span>
+                            <span class="slider-value" id="speedLabel">Estándar</span>
+                        </div>
+                        <input type="range" id="speedSlider" min="0" max="1" value="0" step="1" oninput="updateSpeed(this.value)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Live Summary Sticky -->
+            <div class="summary-col">
+                <div class="summary-card">
+                    <h3 class="summary-title">Resumen de Inversión</h3>
+
+                    <div class="breakdown-row">
+                        <span id="selectedServiceName">Landing Comercial</span>
+                        <span id="selectedServiceCost" style="font-family: var(--mono); color: var(--text-main); font-weight:600;">$350 USD</span>
+                    </div>
+
+                    <div class="breakdown-row">
+                        <span>Módulos extras seleccionados</span>
+                        <span id="addonsCost" style="font-family: var(--mono); color: var(--text-main); font-weight:600;">$180 USD</span>
+                    </div>
+
+                    <div class="breakdown-row">
+                        <span>Ajuste por volumen de vistas</span>
+                        <span id="pagesCost" style="font-family: var(--mono); color: var(--text-main); font-weight:600;">+$0 USD</span>
+                    </div>
+
+                    <div class="breakdown-row">
+                        <span>Descuento aplicado (<span id="discountPercentLabel">10%</span>)</span>
+                        <span id="discountValue" style="font-family: var(--mono); color: #10b981; font-weight:600;">-$53 USD</span>
+                    </div>
+
+                    <div class="delivery-pill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <span>Entrega estimada: <strong id="deliveryDays" style="color: var(--cyan);">7 días hábiles</strong></span>
+                    </div>
+
+                    <div class="breakdown-row total-row">
+                        <span>Total Estimado:</span>
+                        <span class="total-amount" id="totalPrice">$477 USD</span>
+                    </div>
+
+                    <button class="cta-btn" onclick="sendToWhatsApp()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Compartir Propuesta a WhatsApp
+                    </button>
+
+                    <a class="reset-link" onclick="resetDefaults()">Restablecer valores iniciales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <span>✓ Propuesta copiada y lista para enviar</span>
+    </div>
+
+    <script>
+        let currentBasePrice = 350;
+        let currentBaseDays = 5;
+        let currentServiceName = 'Landing Comercial';
+        let isExpress = false;
+        let currentPages = 4;
+
+        function selectService(el, price, days, name) {
+            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            currentBasePrice = price;
+            currentBaseDays = days;
+            currentServiceName = name;
+            updateCalculation();
+        }
+
+        function toggleAddon(el, price, days, name) {
+            el.classList.toggle('selected');
+            updateCalculation();
+        }
+
+        function updatePages(val) {
+            currentPages = parseInt(val);
+            document.getElementById('pagesValue').textContent = `${val} ${val == 1 ? 'sección' : 'secciones'}`;
+            updateCalculation();
+        }
+
+        function updateSpeed(val) {
+            isExpress = val === '1';
+            document.getElementById('speedLabel').textContent = isExpress ? 'Express (Acelerado)' : 'Estándar';
+            document.getElementById('speedLabel').style.color = isExpress ? '#eab308' : 'var(--cyan)';
+            updateCalculation();
+        }
+
+        function toggleAdmin() {
+            const box = document.getElementById('adminBox');
+            const btn = document.getElementById('adminToggle');
+            box.classList.toggle('open');
+            btn.classList.toggle('active');
+        }
+
+        function updateCalculation() {
+            // Addons
+            let addonsTotal = 0;
+            let addonsDays = 0;
+            const selectedAddonNames = [];
+
+            document.querySelectorAll('.addon-item.selected').forEach(item => {
+                const text = item.querySelector('.addon-title').textContent.trim();
+                selectedAddonNames.push(text);
+                if (text.includes('Catálogo')) { addonsTotal += 180; addonsDays += 2; }
+                else if (text.includes('Reservas')) { addonsTotal += 220; addonsDays += 3; }
+                else if (text.includes('Pasarela')) { addonsTotal += 140; addonsDays += 2; }
+                else if (text.includes('Garantía')) { addonsTotal += 90; }
+            });
+
+            // Extra pages (above 4 pages: +$35 each)
+            let pagesFee = 0;
+            if (currentPages > 4) {
+                pagesFee = (currentPages - 4) * 35;
+            }
+
+            // Express fee
+            const expressFee = isExpress ? parseFloat(document.getElementById('adminExpressFee').value || 120) : 0;
+
+            const subtotal = currentBasePrice + addonsTotal + pagesFee + expressFee;
+
+            // Discount
+            const discountPercent = parseFloat(document.getElementById('adminDiscount').value || 0);
+            const discountAmount = Math.round(subtotal * (discountPercent / 100));
+            const finalTotal = subtotal - discountAmount;
+
+            // Days calculation
+            let totalDays = currentBaseDays + addonsDays + (currentPages > 5 ? 2 : 0);
+            if (isExpress) {
+                totalDays = Math.max(3, Math.round(totalDays * 0.55));
+            }
+
+            // Render
+            document.getElementById('selectedServiceName').textContent = currentServiceName;
+            document.getElementById('selectedServiceCost').textContent = `$${currentBasePrice} USD`;
+            document.getElementById('addonsCost').textContent = `$${addonsTotal} USD`;
+            document.getElementById('pagesCost').textContent = pagesFee > 0 ? `+$${pagesFee} USD` : '$0 USD';
+            document.getElementById('discountPercentLabel').textContent = `${discountPercent}%`;
+            document.getElementById('discountValue').textContent = `-$${discountAmount} USD`;
+            document.getElementById('totalPrice').textContent = `$${finalTotal} USD`;
+            document.getElementById('deliveryDays').textContent = `${totalDays} días hábiles`;
+        }
+
+        function sendToWhatsApp() {
+            const total = document.getElementById('totalPrice').textContent;
+            const days = document.getElementById('deliveryDays').textContent;
+            const text = encodeURIComponent(
+                `Hola! Estuve probando el cotizador de SantOps.\n\n` +
+                `*Proyecto:* ${currentServiceName}\n` +
+                `*Vistas requeridas:* ${currentPages}\n` +
+                `*Tiempo estimado:* ${days}\n` +
+                `*Inversión estimada:* ${total}\n\n` +
+                `Me gustaría conversar para materializar esta herramienta para mi negocio.`
+            );
+            window.open(`https://wa.me/541126730434?text=${text}`, '_blank');
+        }
+
+        function resetDefaults() {
+            document.getElementById('pagesSlider').value = 4;
+            document.getElementById('speedSlider').value = 0;
+            document.getElementById('adminDiscount').value = 10;
+            document.getElementById('adminExpressFee').value = 120;
+            updatePages(4);
+            updateSpeed('0');
+            updateCalculation();
+        }
+
+        // Init
+        updateCalculation();
+    </script>
+</body>
+</html>

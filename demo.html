@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prueba gratis una automatización real con SantOps. Generador de mensajes personalizados e inteligentes para ahorrar tiempo en tu negocio. Demo interactiva sin registro.">
-    <meta name="keywords" content="demo automatización, generador mensajes automáticos, prueba gratis automatización, herramienta gratuita marketing, demo santops">
+    <meta name="description" content="Prueba en vivo dentro de SantOps las herramientas web y plataformas autogestionables que construimos. Cotizadores online, gestores de turnos y catálogos interactivos.">
+    <meta name="keywords" content="demos santops, visor interactivo santops, cotizador online, gestor de turnos web, catalogo interactivo autogestionable">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://santops.com/demo">
     <meta name="theme-color" content="#07090e">
@@ -13,19 +13,12 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://santops.com/demo">
     <meta property="og:site_name" content="SantOps">
-    <meta property="og:locale" content="es_AR">
-    <meta property="og:title" content="Demo Gratis - Generador de Mensajes Automáticos | SantOps">
-    <meta property="og:description" content="Prueba una automatización real gratis. Genera mensajes personalizados en segundos y ahorra tiempo en tu negocio.">
-    <meta property="og:image" content="https://santops.com/media/og-image-demo.jpg">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Visor de Demos en Vivo — SantOps Studio">
+    <meta property="og:description" content="Prueba e interactúa con nuestras herramientas web autogestionables directamente dentro de SantOps.">
+    <meta property="og:image" content="https://santops.com/media/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Demo Gratis - Generador de Mensajes Automáticos">
-    <meta name="twitter:description" content="Prueba gratis. Genera mensajes personalizados en segundos.">
-    <meta name="twitter:image" content="https://santops.com/media/og-image-demo.jpg">
-    <meta name="twitter:creator" content="@santops.lab">
     
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="media/logo-icon.svg">
@@ -33,10 +26,364 @@
     <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="media/apple-touch-icon.png">
     
-    <title>Demo Gratis - Generador de Mensajes Automáticos con IA | SantOps</title>
-    <link rel="stylesheet" href="css/styles.css?v=dark2">
+    <title>Visor de Demos en Vivo — Plataformas Web | SantOps</title>
+    <link rel="stylesheet" href="css/styles.css?v=dark4">
+    
+    <style>
+        .studio-showcase-section {
+            padding: 40px 0 90px;
+        }
+
+        .studio-header {
+            text-align: center;
+            max-width: 860px;
+            margin: 0 auto 36px;
+        }
+
+        .studio-title {
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 14px 0 16px;
+            letter-spacing: -0.03em;
+            line-height: 1.18;
+        }
+
+        .studio-subtitle {
+            font-size: 16px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* Top Studio Controls Bar */
+        .studio-control-bar {
+            background: rgba(13, 19, 32, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 14px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Tool Switcher Tabs */
+        .tool-switcher {
+            display: flex;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 4px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .tool-tab-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 8px 14px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tool-tab-btn:hover {
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tool-tab-btn.active {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);
+        }
+
+        /* Device Switcher */
+        .device-switcher {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 4px;
+            border-radius: 10px;
+        }
+
+        .device-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .device-btn:hover {
+            color: #f8fafc;
+        }
+
+        .device-btn.active {
+            background: rgba(6, 182, 212, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        /* Right Actions */
+        .studio-right-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .studio-action-icon-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .studio-action-icon-btn:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+            background: rgba(6, 182, 212, 0.08);
+        }
+
+        /* Viewer Container Mockup */
+        .viewport-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .device-mockup-frame {
+            width: 100%;
+            background: #07090e;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(6, 182, 212, 0.1);
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .device-mockup-frame.mode-desktop {
+            width: 100%;
+        }
+
+        .device-mockup-frame.mode-tablet {
+            width: 768px;
+        }
+
+        .device-mockup-frame.mode-mobile {
+            width: 410px;
+        }
+
+        .browser-mockup-bar {
+            background: #0d1320;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #10b981; }
+
+        .browser-url-pill {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-family: ui-monospace, monospace;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 740px;
+            background: #07090e;
+        }
+
+        .demo-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Tool Specs & Explanatory Box */
+        .tool-specs-card {
+            background: rgba(13, 19, 32, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 860px) {
+            .tool-specs-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .specs-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+
+        .specs-desc {
+            font-size: 14.5px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .specs-feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .specs-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13.5px;
+            color: #cbd5e1;
+        }
+
+        .specs-check-icon {
+            color: #38bdf8;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .specs-sidebar-cta {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .specs-cta-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+
+        .specs-cta-p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .specs-cta-btn {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 12px 18px;
+            border-radius: 9px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .specs-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(6, 182, 212, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .studio-control-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tool-switcher, .device-switcher {
+                width: 100%;
+                justify-content: center;
+            }
+            .studio-right-actions {
+                justify-content: space-between;
+            }
+            .iframe-container {
+                height: 600px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Background Particles -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -61,28 +408,13 @@
                             </radialGradient>
                         </defs>
                     </svg>
-                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="16" fill="none" stroke="url(#iconGradient)" stroke-width="4" stroke-dasharray="85 15" stroke-linecap="round" transform="rotate(-95 20 20)"/>
-                        <circle cx="20" cy="20" r="8" fill="url(#iconGradientInner)" opacity="0.4"/>
-                        <path d="M 12 18 Q 14 16, 16 16 Q 18 16, 20 18 Q 22 20, 24 20 Q 26 20, 28 18" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
-                        <defs>
-                            <linearGradient id="iconGradient" x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#0891b2"/>
-                                <stop offset="50%" stop-color="#06b6d4"/>
-                                <stop offset="100%" stop-color="#3b82f6"/>
-                            </linearGradient>
-                            <radialGradient id="iconGradientInner" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(20 20) scale(8)">
-                                <stop offset="0%" stop-color="#06b6d4"/>
-                                <stop offset="100%" stop-color="#0891b2"/>
-                            </radialGradient>
-                        </defs>
-                    </svg>
                 </a>
                 <nav class="main-nav">
                     <a href="index.html">Inicio</a>
-                    <a href="index.html#proceso">Proceso</a>
-                    <a href="index.html#servicios">Servicios</a>
-                    <a href="demo.html">Demo</a>
+                    <a href="index.html#enfoque">Enfoque</a>
+                    <a href="index.html#proyectos">Proyectos</a>
+                    <a href="index.html#proceso">Proceso & Garantía</a>
+                    <a href="demo.html" class="active">Demos en Vivo</a>
                     <a href="contacto.html">Contacto</a>
                 </nav>
                 <button class="mobile-menu-toggle" aria-label="Menú">
@@ -90,307 +422,143 @@
                     <span></span>
                     <span></span>
                 </button>
-                <a href="contacto.html" class="nav-cta">Contactar</a>
+                <a href="contacto.html" class="nav-cta">Iniciar Proyecto</a>
             </div>
         </div>
         <div class="mobile-menu">
             <nav>
                 <a href="index.html" class="mobile-menu-item">Inicio</a>
-                <a href="index.html#proceso" class="mobile-menu-item">Proceso</a>
-                <a href="index.html#servicios" class="mobile-menu-item">Servicios</a>
-                <a href="demo.html" class="mobile-menu-item">Demo</a>
+                <a href="index.html#enfoque" class="mobile-menu-item">Enfoque</a>
+                <a href="index.html#proyectos" class="mobile-menu-item">Proyectos</a>
+                <a href="index.html#proceso" class="mobile-menu-item">Proceso & Garantía</a>
+                <a href="demo.html" class="mobile-menu-item active">Demos en Vivo</a>
                 <a href="contacto.html" class="mobile-menu-item">Contacto</a>
                 <a href="https://wa.me/541126730434" class="mobile-menu-item whatsapp-link" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    WhatsApp
+                    WhatsApp Directo
                 </a>
             </nav>
         </div>
     </header>
 
-    <!-- Demo Hero -->
-    <section class="hero demo-hero">
+    <!-- Main Studio Section -->
+    <main class="studio-showcase-section">
         <div class="container">
-            <div class="demo-badge">
-                <span class="badge-icon">🚀</span>
-                <span>Prueba gratis - Sin registro</span>
+            <div class="studio-header">
+                <div class="hero-tag-terminal">
+                    <span class="pulse-dot"></span>
+                    <span>Estudio Interactivo SantOps</span>
+                </div>
+                <h1 class="studio-title">Prueba en vivo las herramientas que construimos</h1>
+                <p class="studio-subtitle">
+                    Interactúa directamente con soluciones autogestionables en tiempo real dentro de SantOps. Modifica datos, simula flujos y comprueba la experiencia de usuario antes de iniciar el desarrollo de tu plataforma.
+                </p>
             </div>
-            <h1>Prueba el Poder de la Automatización</h1>
-            <p class="hero-subtitle">Descubre cuánto tiempo y dinero estás perdiendo ahora mismo. Usa nuestras calculadoras gratuitas y visualiza tu ROI en menos de 2 minutos.</p>
-            
-            <div class="demo-stats">
-                <div class="demo-stat">
-                    <div class="stat-icon">⏱️</div>
-                    <p>Ahorra <strong>5-10 min</strong> por tarea</p>
+
+            <!-- Studio Control Bar -->
+            <div class="studio-control-bar">
+                <!-- Selector de Proyectos -->
+                <div class="tool-switcher">
+                    <button class="tool-tab-btn active" id="tab-cotizador" onclick="loadDemoTool('cotizador')">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+                        <span>Cotizador Inteligente</span>
+                    </button>
+                    <button class="tool-tab-btn" id="tab-reservas" onclick="loadDemoTool('reservas')">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                        <span>Gestor de Turnos & Agenda</span>
+                    </button>
+                    <button class="tool-tab-btn" id="tab-catalogo" onclick="loadDemoTool('catalogo')">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span>Catálogo & Pedidos</span>
+                    </button>
                 </div>
-                <div class="demo-stat">
-                    <div class="stat-icon">✉️</div>
-                    <p>Múltiples <strong>herramientas</strong> disponibles</p>
+
+                <!-- Viewport Switcher -->
+                <div class="device-switcher">
+                    <button class="device-btn active" id="btn-desktop" onclick="setDeviceView('desktop')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                        <span>Desktop</span>
+                    </button>
+                    <button class="device-btn" id="btn-tablet" onclick="setDeviceView('tablet')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+                        <span>Tablet</span>
+                    </button>
+                    <button class="device-btn" id="btn-mobile" onclick="setDeviceView('mobile')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+                        <span>Mobile</span>
+                    </button>
                 </div>
-                <div class="demo-stat">
-                    <div class="stat-icon">💰</div>
-                    <p>ROI: <strong>~300%</strong> en tiempo</p>
+
+                <!-- Utility Actions -->
+                <div class="studio-right-actions">
+                    <button class="studio-action-icon-btn" onclick="reloadActiveDemo()" title="Reiniciar demostración">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+                        <span>Reiniciar</span>
+                    </button>
+                    <a href="demos/cotizador.html" target="_blank" id="openExternalLink" class="studio-action-icon-btn" title="Abrir herramienta en pestaña completa">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                        <span>Pantalla Completa</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Viewport Container Frame -->
+            <div class="viewport-wrapper">
+                <div class="device-mockup-frame mode-desktop" id="deviceFrame">
+                    <div class="browser-mockup-bar">
+                        <div class="browser-dots">
+                            <span class="browser-dot dot-red"></span>
+                            <span class="browser-dot dot-yellow"></span>
+                            <span class="browser-dot dot-green"></span>
+                        </div>
+                        <div class="browser-url-pill">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span id="browserUrlText">santops.com/demos/cotizador.html</span>
+                        </div>
+                    </div>
+                    <div class="iframe-container">
+                        <iframe id="demoIframe" class="demo-iframe" src="demos/cotizador.html" title="SantOps Interactive Demo Tool"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Tool Specs & Business Impact Drawer -->
+            <div class="tool-specs-card">
+                <div>
+                    <h2 class="specs-title" id="specTitle">Cotizador Online Inteligente</h2>
+                    <p class="specs-desc" id="specDesc">
+                        Permite a tus potenciales clientes calcular de forma transparente el costo de sus servicios o productos según variables específicas, reduciendo la fricción comercial y entregando solicitudes filtradas y listas para cerrar.
+                    </p>
+                    <ul class="specs-feature-list" id="specFeatures">
+                        <li class="specs-feature-item">
+                            <span class="specs-check-icon">✓</span>
+                            <span><strong>Cálculo reactivo en tiempo real:</strong> Actualización instantánea de costos, plazos y descuentos sin recargar la página.</span>
+                        </li>
+                        <li class="specs-feature-item">
+                            <span class="specs-check-icon">✓</span>
+                            <span><strong>Panel editable para el dueño:</strong> Modifica tarifas base, recargos y descuentos cuando quieras sin escribir código.</span>
+                        </li>
+                        <li class="specs-feature-item">
+                            <span class="specs-check-icon">✓</span>
+                            <span><strong>Conexión directa a WhatsApp:</strong> Envía el presupuesto desglosado con un solo clic.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="specs-sidebar-cta">
+                    <div>
+                        <div class="specs-cta-title">¿Necesitas algo similar?</div>
+                        <p class="specs-cta-p">
+                            Materializamos esta herramienta adaptada a la lógica y tarifas exactas de tu empresa, con 30 días de garantía técnica y soporte.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/541126730434?text=Hola!%20Prob%C3%A9%20el%20visor%20de%20demos%20en%20SantOps%20y%20me%20interesa%20una%20herramienta%20similar." target="_blank" rel="noopener" class="specs-cta-btn">
+                        <span>Conversar con el equipo</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Demo Tool -->
-    <section class="section-gray">
-        <div class="container">
-            <!-- Tabs Navigation -->
-            <div class="demo-tabs">
-                <button class="demo-tab active" data-tab="messages">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M2 4h16M2 10h16M2 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    Generador de Mensajes
-                </button>
-                <button class="demo-tab" data-tab="calculator">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-                        <path d="M3 8h14M8 3v14" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                    Calculadora de ROI
-                </button>
-            </div>
-
-            <!-- Tab Content: Messages Generator -->
-            <div class="tab-content active" id="tab-messages">
-                <div class="demo-container">
-                    <!-- Input Section -->
-                    <div class="demo-section">
-                        <h2>📝 Datos del Cliente</h2>
-                        <p class="section-hint">Completa los campos y mira cómo se genera automáticamente el mensaje</p>
-                        
-                        <div class="demo-form">
-                            <div class="form-group">
-                                <label for="clientName">Nombre del cliente</label>
-                                <input type="text" id="clientName" placeholder="Juan Pérez" value="Juan Pérez">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="companyName">Empresa</label>
-                                <input type="text" id="companyName" placeholder="Mi Empresa SRL" value="Mi Empresa SRL">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="messageType">Tipo de mensaje</label>
-                                <div class="select-wrapper">
-                                    <select id="messageType">
-                                        <option value="bienvenida" data-icon="👋">👋 Bienvenida nuevo cliente</option>
-                                        <option value="seguimiento" data-icon="📊">📊 Seguimiento de propuesta</option>
-                                        <option value="recordatorio" data-icon="⏰">⏰ Recordatorio de pago</option>
-                                        <option value="agradecimiento" data-icon="🎉">🎉 Agradecimiento post-compra</option>
-                                    </select>
-                                    <svg class="select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                        <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group" id="extraFieldContainer">
-                                <label for="extraField" id="extraFieldLabel">Monto de propuesta</label>
-                                <input type="text" id="extraField" placeholder="$50,000">
-                            </div>
-                            
-                            <button id="generateBtn" class="btn-demo">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M13.5 3L19 8.5m0 0L13.5 14M19 8.5H1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Generar Mensaje
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Output Section -->
-                    <div class="demo-section">
-                        <h2>✨ Mensaje Generado</h2>
-                        <p class="section-hint">Listo para copiar y enviar</p>
-                        
-                        <div class="message-output">
-                            <div class="output-header">
-                                <span class="output-label">Para: <strong id="outputRecipient">Juan Pérez</strong></span>
-                                <button id="copyBtn" class="btn-copy">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M13.3 3.3H6.7c-.7 0-1.4.6-1.4 1.4v6.6c0 .7.6 1.4 1.4 1.4h6.6c.7 0 1.4-.6 1.4-1.4V4.7c0-.8-.6-1.4-1.4-1.4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M3.3 10h-.6c-.7 0-1.4-.6-1.4-1.4V2c0-.7.6-1.4 1.4-1.4h6.6c.7 0 1.4.6 1.4 1.4v.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    Copiar
-                                </button>
-                            </div>
-                            <div class="output-content" id="generatedMessage">
-                                <p>Hola Juan,</p>
-                                <p>¡Bienvenido a bordo! Estamos emocionados de comenzar a trabajar contigo y transformar Mi Empresa SRL.</p>
-                                <p>Nos comprometemos a: (1) Cumplir todos los plazos acordados, (2) Mantener comunicación constante y transparente, (3) Entregarte resultados medibles desde el día 1.</p>
-                                <p>Próximos pasos:<br>• En las próximas 48 horas recibirás el cronograma detallado<br>• Agendaré nuestra primera sesión de kickoff<br>• Tendrás acceso directo a mí por WhatsApp 24/7</p>
-                                <p>¿Preguntas? Respóndeme este mensaje.</p>
-                                <p>Gracias por confiar en SantOps para llevar tu negocio al siguiente nivel.</p>
-                                <p>Saludos,<br>Equipo SantOps</p>
-                            </div>
-                            <div class="copy-success" id="copySuccess">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M16.7 5L7.5 14.2 3.3 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                ¡Copiado!
-                            </div>
-                        </div>
-                        
-                        <div class="demo-actions">
-                            <button id="whatsappBtn" class="btn-action">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                                </svg>
-                                Enviar por WhatsApp
-                            </button>
-                            <button id="emailBtn" class="btn-action secondary">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M3 4h14c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/>
-                                    <path d="M19 6l-9 5-9-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Enviar por Email
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab Content: ROI Calculator -->
-            <div class="tab-content" id="tab-calculator">
-                <div class="demo-container calculator-demo">
-                    <!-- Input Section -->
-                    <div class="demo-section">
-                        <h2>💰 Calcula tu ROI en Automatización</h2>
-                        <p class="section-hint">Descubre cuánto tiempo y dinero puedes ahorrar automatizando</p>
-                        
-                        <div class="demo-form">
-                            <div class="form-group">
-                                <label for="taskName">¿Qué tarea quieres automatizar?</label>
-                                <input type="text" id="taskName" placeholder="Ej: Envío de informes" value="Envío de informes">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="timePerTask">¿Cuántos minutos te toma cada vez?</label>
-                                <input type="number" id="timePerTask" placeholder="15" value="15" min="1">
-                                <span class="input-hint">minutos por ejecución</span>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="timesPerWeek">¿Cuántas veces lo haces por semana?</label>
-                                <input type="number" id="timesPerWeek" placeholder="10" value="10" min="1">
-                                <span class="input-hint">veces por semana</span>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="hourlyCost">Costo por hora de tu tiempo</label>
-                                <input type="number" id="hourlyCost" placeholder="2000" value="2000" min="0">
-                                <span class="input-hint">ARS por hora</span>
-                            </div>
-                            
-                            <button id="calculateBtn" class="btn-demo">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M10 3v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                                Calcular Ahorro
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Output Section -->
-                    <div class="demo-section">
-                        <h2>📈 Tu Ahorro Proyectado</h2>
-                        <p class="section-hint">Basado en los datos ingresados</p>
-                        
-                        <div class="roi-output">
-                            <div class="roi-card primary">
-                                <div class="roi-icon">⏱️</div>
-                                <div class="roi-value" id="timeSavedWeek">2.5</div>
-                                <div class="roi-label">Horas ahorradas por semana</div>
-                            </div>
-                            
-                            <div class="roi-card success">
-                                <div class="roi-icon">💰</div>
-                                <div class="roi-value" id="moneySavedMonth">ARS 20,000</div>
-                                <div class="roi-label">Ahorro mensual estimado</div>
-                            </div>
-                            
-                            <div class="roi-card accent">
-                                <div class="roi-icon">📅</div>
-                                <div class="roi-value" id="timeSavedYear">130</div>
-                                <div class="roi-label">Horas ahorradas al año</div>
-                            </div>
-                            
-                            <div class="roi-card warning">
-                                <div class="roi-icon">🚀</div>
-                                <div class="roi-value" id="roiPercentage">300%</div>
-                                <div class="roi-label">ROI típico en 6 meses</div>
-                            </div>
-                        </div>
-                        
-                        <div class="roi-insights">
-                            <h3>💡 Con ese tiempo recuperado podrías:</h3>
-                            <ul id="roiInsights">
-                                <li>✅ Atender <strong id="newClients">5</strong> clientes más por mes</li>
-                                <li>✅ Dedicar <strong id="strategicHours">10</strong> horas a estrategia</li>
-                                <li>✅ Aumentar facturación en un <strong>20-30%</strong></li>
-                                <li>✅ Reducir errores manuales en <strong>90%</strong></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="roi-cta">
-                            <p><strong>¿Quieres hacer esto realidad?</strong></p>
-                            <a href="contacto.html" class="btn-demo">
-                                Solicitar Consultoría Gratis
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Benefits -->
-            <div class="demo-benefits">
-                <h2>💡 Imagina esto en tu negocio</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📊</div>
-                        <h3>Conectado a tus planillas</h3>
-                        <p>Los datos se cargan automáticamente desde Google Sheets o Excel</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">⚡</div>
-                        <h3>Envío automático</h3>
-                        <p>Los mensajes se envían en el momento exacto sin intervención manual</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🎯</div>
-                        <h3>Personalización masiva</h3>
-                        <p>Cientos de mensajes personalizados en segundos</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📈</div>
-                        <h3>Seguimiento organizado</h3>
-                        <p>Todo queda registrado automáticamente en una planilla compartida</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-final">
-        <div class="container">
-            <h2>¿Te gustaría automatizar esto en tu empresa?</h2>
-            <p>Puedo implementar esta y muchas otras automatizaciones adaptadas a tu negocio. Agenda un diagnóstico gratuito y descubramos juntos cómo optimizar tus procesos.</p>
-            <div class="cta-buttons">
-                <a href="contacto.html" class="btn-white">Agendar diagnóstico gratuito</a>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -398,7 +566,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <img src="media/logo-santops.svg" alt="SantOps Logo" class="footer-brand-logo">
-                    <p>Optimización inteligente para tu negocio</p>
+                    <p>Herramientas digitales a la medida de tu negocio</p>
                 </div>
                 <div class="footer-social">
                     <a href="mailto:santosgp14@gmail.com" class="social-link" aria-label="Email">
@@ -414,79 +582,176 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 SantOps - Soluciones Digitales</p>
+                <p>&copy; 2026 SantOps - Desarrollo & Herramientas Web</p>
                 <div class="footer-credits">
-                    <span>Hecho por</span>
+                    <span>Creado con</span>
                     <img src="media/logo-santops.svg" alt="SantOps Logo" class="footer-logo">
-                    <span>y ❤️ en Argentina</span>
                 </div>
-                <a href="soporte.html" class="footer-soporte-link">
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M6 6.5a2 2 0 1 1 2 2v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.5" r="0.75" fill="currentColor"/></svg>
-                    Soporte
-                </a>
+                <a href="soporte.html" class="footer-soporte-link">Soporte</a>
             </div>
         </div>
     </footer>
 
-    <script src="js/animations.js"></script>
-    <script src="js/demo.js"></script>
-    
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/541126730434?text=Hola!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20automatizaci%C3%B3n%20de%20procesos." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/541126730434?text=Hola!%20Me%20interesa%20conversar%20sobre%20una%20herramienta%20para%20mi%20negocio." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
-        <span class="whatsapp-tooltip">¿Hablamos?</span>
+        <span class="whatsapp-tooltip">¿Conversamos?</span>
     </a>
-    
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top" aria-label="Volver arriba">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 19V5m0 0l-7 7m7-7l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </button>
-    
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress"></div>
-    
-    <!-- Schema.org JSON-LD para página demo -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Generador de Mensajes Automáticos - SantOps Demo",
-      "description": "Herramienta gratuita de demostración para generar mensajes personalizados automáticamente",
-      "url": "https://santops.com/demo",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "creator": {
-        "@type": "Organization",
-        "name": "SantOps"
-      }
-    }
+
+    <script src="js/animations.js"></script>
+    <script>
+        const toolsData = {
+            cotizador: {
+                url: 'demos/cotizador.html',
+                browserUrl: 'santops.com/demos/cotizador.html',
+                title: 'Cotizador Online Inteligente',
+                desc: 'Permite a tus potenciales clientes calcular de forma transparente el costo de sus servicios o productos según variables específicas, reduciendo la fricción comercial y entregando solicitudes filtradas y listas para cerrar.',
+                features: [
+                    '<strong>Cálculo reactivo en tiempo real:</strong> Actualización instantánea de costos, plazos y descuentos sin recargar la página.',
+                    '<strong>Panel editable para el dueño:</strong> Modifica tarifas base, recargos y descuentos cuando quieras sin escribir código.',
+                    '<strong>Conexión directa a WhatsApp:</strong> Envía el presupuesto desglosado con un solo clic.'
+                ]
+            },
+            reservas: {
+                url: 'demos/reservas.html',
+                browserUrl: 'santops.com/demos/reservas.html',
+                title: 'Gestor de Turnos & Agenda Web',
+                desc: 'Elimina las idas y vueltas por mensajes. Tus clientes seleccionan día, servicio y horario disponible en tiempo real, mientras tú gestionas la agenda desde el panel de control del negocio.',
+                features: [
+                    '<strong>Sincronización de horarios disponibles:</strong> Los bloques ocupados se deshabilitan automáticamente para evitar sobreturnos.',
+                    '<strong>Vista dual (Cliente / Dueño):</strong> Panel exclusivo para que el administrador visualice, confirme o libere turnos.',
+                    '<strong>Confirmación con código de ticket:</strong> Notificaciones directas y resúmenes de cita.'
+                ]
+            },
+            catalogo: {
+                url: 'demos/catalogo.html',
+                browserUrl: 'santops.com/demos/catalogo.html',
+                title: 'Catálogo & Tomador de Pedidos',
+                desc: 'Una vitrina digital ágil para restaurantes, cafeterías o tiendas. Permite a los usuarios armar su carrito de compra y despacharlo estructurado a tu canal de ventas.',
+                features: [
+                    '<strong>Carrito de compra interactivo:</strong> Control de cantidades, subtotales y cálculo automático en vivo.',
+                    '<strong>Modo edición de precios y stock:</strong> El propietario del local puede cambiar precios directamente en la pantalla.',
+                    '<strong>Despacho ordenado por WhatsApp:</strong> Envía el listado con cantidades y monto total listo para cobrar.'
+                ]
+            }
+        };
+
+        let currentActiveTool = 'cotizador';
+
+        function loadDemoTool(toolKey) {
+            if (!toolsData[toolKey]) return;
+            currentActiveTool = toolKey;
+
+            // Update Tabs
+            document.querySelectorAll('.tool-tab-btn').forEach(btn => btn.classList.remove('active'));
+            const tabBtn = document.getElementById(`tab-${toolKey}`);
+            if (tabBtn) tabBtn.classList.add('active');
+
+            const data = toolsData[toolKey];
+
+            // Update Iframe & Browser bar
+            const iframe = document.getElementById('demoIframe');
+            iframe.src = data.url;
+            document.getElementById('browserUrlText').textContent = data.browserUrl;
+            document.getElementById('openExternalLink').href = data.url;
+
+            // Update Specs Drawer
+            document.getElementById('specTitle').textContent = data.title;
+            document.getElementById('specDesc').textContent = data.desc;
+
+            const list = document.getElementById('specFeatures');
+            list.innerHTML = data.features.map(f => `
+                <li class="specs-feature-item">
+                    <span class="specs-check-icon">✓</span>
+                    <span>${f}</span>
+                </li>
+            `).join('');
+
+            // Update URL query param without refresh
+            const url = new URL(window.location);
+            url.searchParams.set('tool', toolKey);
+            window.history.replaceState({}, '', url);
+        }
+
+        function setDeviceView(mode) {
+            const frame = document.getElementById('deviceFrame');
+            frame.classList.remove('mode-desktop', 'mode-tablet', 'mode-mobile');
+            frame.classList.add(`mode-${mode}`);
+
+            document.querySelectorAll('.device-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${mode}`).classList.add('active');
+        }
+
+        function reloadActiveDemo() {
+            const iframe = document.getElementById('demoIframe');
+            iframe.src = iframe.src;
+        }
+
+        // On Load: Check URL parameters (e.g. ?tool=reservas)
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const toolParam = params.get('tool');
+            if (toolParam && toolsData[toolParam]) {
+                loadDemoTool(toolParam);
+            }
+        });
     </script>
-    
+
+    <!-- Schema.org JSON-LD para Demos & Aplicaciones Web -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Inicio",
-        "item": "https://santops.com"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Demo",
-        "item": "https://santops.com/demo"
-      }]
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://santops.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Demos en Vivo",
+          "item": "https://santops.com/demo.html"
+        }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Demos Interactivas de Herramientas Web SantOps",
+      "itemListElement": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Cotizador Online Inteligente",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "https://santops.com/demos/cotizador.html",
+          "description": "Calculadora de tarifas reactiva en tiempo real con panel de edición de precios para dueños de negocio."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Gestor de Turnos & Agenda Web",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "https://santops.com/demos/reservas.html",
+          "description": "Sistema de reservas sincronizado en vivo con calendario interactivo y vista de administración."
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Catálogo & Tomador de Pedidos",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "https://santops.com/demos/catalogo.html",
+          "description": "Catálogo digital con carrito de compras, editor de precios inline y despacho directo a WhatsApp."
+        }
+      ]
     }
     </script>
 </body>
