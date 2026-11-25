@@ -784,3 +784,69 @@ if (document.readyState === 'loading') {
     initCarousels();
 }
 
+// ==========================================
+// MOBILE HEADER LOGO MORPH (WORDMARK -> ISOTIPO)
+// ==========================================
+function initMobileLogoMorph() {
+    const brandLogo = document.querySelector('header .brand-logo');
+    if (!brandLogo) return;
+
+    const wordmark = brandLogo.querySelector('.logo-wordmark');
+    const icon = brandLogo.querySelector('.logo-icon');
+    if (!wordmark || !icon) return;
+
+    const mobileMq = window.matchMedia('(max-width: 768px)');
+    let morphTimer = null;
+    let scrollHandler = null;
+
+    const cleanup = () => {
+        if (morphTimer !== null) {
+            clearTimeout(morphTimer);
+            morphTimer = null;
+        }
+        if (scrollHandler !== null) {
+            window.removeEventListener('scroll', scrollHandler);
+            scrollHandler = null;
+        }
+    };
+
+    const compactLogo = () => {
+        cleanup();
+        brandLogo.classList.add('is-compact');
+    };
+
+    const runMobileMorph = () => {
+        cleanup();
+        brandLogo.classList.remove('is-compact');
+
+        if (!mobileMq.matches) return;
+
+        if (window.scrollY > 20) {
+            morphTimer = setTimeout(compactLogo, 120);
+            return;
+        }
+
+        scrollHandler = () => {
+            if (window.scrollY > 20) {
+                compactLogo();
+            }
+        };
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        morphTimer = setTimeout(compactLogo, 1800);
+    };
+
+    if (typeof mobileMq.addEventListener === 'function') {
+        mobileMq.addEventListener('change', runMobileMorph);
+    } else if (typeof mobileMq.addListener === 'function') {
+        mobileMq.addListener(runMobileMorph);
+    }
+
+    runMobileMorph();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileLogoMorph);
+} else {
+    initMobileLogoMorph();
+}
+
